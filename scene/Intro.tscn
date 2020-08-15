@@ -1,3 +1,37 @@
 [gd_scene format=2]
 
 [node name="Node" type="Node"]
+
+[node name="IntroGUI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Introduction" type="Label" parent="IntroGUI"]
+margin_left = 243.0
+margin_top = 139.0
+margin_right = 536.0
+margin_bottom = 153.0
+text = "Welcome to the wonderful world of pokemon!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="IntroGUI"]
+margin_left = 283.0
+margin_top = 208.0
+margin_right = 517.0
+margin_bottom = 258.0
+text = "Enter your pet name here!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="IntroGUI"]
+margin_left = 285.0
+margin_top = 360.0
+margin_right = 521.0
+margin_bottom = 433.0
+text = "Start your journey!"
