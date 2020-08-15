@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/colored_transparent.png-54eda8a61bfa211740ddab82c1830951.stex"
+path="res://.import/needbar_end.png-0d81b6055bf36433d226ef4020391e9c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/colored_transparent.png"
-dest_files=[ "res://.import/colored_transparent.png-54eda8a61bfa211740ddab82c1830951.stex" ]
+source_file="res://assets/needbar_end.png"
+dest_files=[ "res://.import/needbar_end.png-0d81b6055bf36433d226ef4020391e9c.stex" ]
 
 [params]
 
