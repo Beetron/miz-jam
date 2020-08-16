@@ -3,7 +3,6 @@ extends Node2D
 signal petting_won(need)
 signal petting_lost
 
-var difficulty = 2
 var clicks = 0
 
 func _ready():
@@ -27,7 +26,7 @@ func _on_Pet_input_event(viewport, event, shape_idx):
 	return
 
 func _on_Pet_ready():
-	$Pet.tune_difficulty(difficulty)
+	$Pet.tune_difficulty(get_parent().difficulty)
 	return
 
 func _on_Timer_timeout():

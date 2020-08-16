@@ -80,14 +80,12 @@ margin_left = 333.731
 margin_top = 182.228
 margin_right = 433.731
 margin_bottom = 202.228
-text = "Feed your pet"
 
 [node name="Pet" type="Button" parent="GUI"]
 margin_left = 98.5301
 margin_top = 261.687
 margin_right = 188.53
 margin_bottom = 281.687
-text = "Pet your pet"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -97,7 +95,6 @@ margin_left = 584.824
 margin_top = 240.498
 margin_right = 656.824
 margin_bottom = 260.498
-text = "Go killing"
 __meta__ = {
 "_edit_use_anchors_": false
 }

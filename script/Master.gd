@@ -7,10 +7,6 @@ const FeedingGame = preload("res://scene/FeedingGame.tscn")
 const KillingGame = preload("res://scene/TrapdoorGame.tscn")
 const Loss = preload("res://scene/LossScreen.tscn")
 
-onready var current_scene = get_node("Title")
-export var starting_need = 20
-var rng = RandomNumberGenerator.new()
-
 class Need:
 	var size : int
 	var name : String
@@ -19,10 +15,18 @@ class Need:
 
 enum LastReduction {SMALL, MEDIUM, LARGE}
 
+export var starting_need = 20
+export var difficulty = 1
+
+onready var current_scene = get_node("Title")
 onready var hunger = Need.new()
 onready var love = Need.new()
 onready var bloodlust = Need.new()
+
+var rng = RandomNumberGenerator.new()
 var needs = []
+var pet_name : String
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -76,11 +80,11 @@ func load_lose_screen(need_name):
 	var loss_message = loss_scene.get_node("LossMessage")
 	match(need_name):
 		"Hunger":
-			loss_message.text = "Your pet has starved..."
+			loss_message.text = pet_name+" has starved..."
 		"Love":
-			loss_message.text = "Your pet has abandoned you..."
+			loss_message.text = pet_name+" has abandoned you..."
 		"Bloodlust":
-			loss_message.text = "Your pet has left to go on a rampage..."
+			loss_message.text = pet_name+" has left to go on a rampage..."
 	add_child(loss_scene)
 	current_scene = loss_scene
 	return

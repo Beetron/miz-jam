@@ -7,5 +7,6 @@ func _ready():
 	return
  
 func _on_StartMenu_pressed():
+	get_parent().pet_name = get_node("IntroGUI/HSplitContainer/LineEdit").text
 	emit_signal("pet_selected")
 	return
