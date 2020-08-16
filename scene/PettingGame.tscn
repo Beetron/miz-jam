@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/PettingGame.gd" type="Script" id=2]
@@ -38,7 +38,10 @@ points = PoolVector2Array( 14.9789, 14.9128, 7.84579, 14.9128, 7.84579, 0.781128
 [sub_resource type="ConvexPolygonShape2D" id=11]
 points = PoolVector2Array( 1.06564, 0.999542, 14.9282, 1.26874, 15.0628, 7.86353, 7.92963, 7.99811, 7.79504, 14.4583, 1.33484, 14.9967 )
 
-[sub_resource type="TileSet" id=12]
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+
+[sub_resource type="TileSet" id=13]
 13/name = "colored_transparent.png 13"
 13/texture = ExtResource( 4 )
 13/tex_offset = Vector2( 0, 0 )
@@ -239,17 +242,181 @@ points = PoolVector2Array( 1.06564, 0.999542, 14.9282, 1.26874, 15.0628, 7.86353
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 22/z_index = 0
+23/name = "colored_transparent.png 23"
+23/texture = ExtResource( 4 )
+23/tex_offset = Vector2( 0, 0 )
+23/modulate = Color( 1, 1, 1, 1 )
+23/region = Rect2( 306, 0, 16, 16 )
+23/tile_mode = 0
+23/occluder_offset = Vector2( 0, 0 )
+23/navigation_offset = Vector2( 0, 0 )
+23/shape_offset = Vector2( 0, 0 )
+23/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+23/shape_one_way = false
+23/shape_one_way_margin = 0.0
+23/shapes = [  ]
+23/z_index = 0
+24/name = "colored_transparent.png 24"
+24/texture = ExtResource( 4 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 323, 0, 16, 16 )
+24/tile_mode = 0
+24/occluder_offset = Vector2( 0, 0 )
+24/navigation_offset = Vector2( 0, 0 )
+24/shape_offset = Vector2( 0, 0 )
+24/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+24/shape_one_way = false
+24/shape_one_way_margin = 0.0
+24/shapes = [  ]
+24/z_index = 0
+25/name = "colored_transparent.png 25"
+25/texture = ExtResource( 4 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 340, 0, 16, 16 )
+25/tile_mode = 0
+25/occluder_offset = Vector2( 0, 0 )
+25/navigation_offset = Vector2( 0, 0 )
+25/shape_offset = Vector2( 0, 0 )
+25/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+25/shape_one_way = false
+25/shape_one_way_margin = 0.0
+25/shapes = [  ]
+25/z_index = 0
+26/name = "colored_transparent.png 26"
+26/texture = ExtResource( 4 )
+26/tex_offset = Vector2( 0, 0 )
+26/modulate = Color( 1, 1, 1, 1 )
+26/region = Rect2( 306, 17, 16, 16 )
+26/tile_mode = 0
+26/occluder_offset = Vector2( 0, 0 )
+26/navigation_offset = Vector2( 0, 0 )
+26/shape_offset = Vector2( 0, 0 )
+26/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+26/shape_one_way = false
+26/shape_one_way_margin = 0.0
+26/shapes = [  ]
+26/z_index = 0
+27/name = "colored_transparent.png 27"
+27/texture = ExtResource( 4 )
+27/tex_offset = Vector2( 0, 0 )
+27/modulate = Color( 1, 1, 1, 1 )
+27/region = Rect2( 323, 17, 16, 16 )
+27/tile_mode = 0
+27/occluder_offset = Vector2( 0, 0 )
+27/navigation_offset = Vector2( 0, 0 )
+27/shape_offset = Vector2( 0, 0 )
+27/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+27/shape_one_way = false
+27/shape_one_way_margin = 0.0
+27/shapes = [  ]
+27/z_index = 0
+28/name = "colored_transparent.png 28"
+28/texture = ExtResource( 4 )
+28/tex_offset = Vector2( 0, 0 )
+28/modulate = Color( 1, 1, 1, 1 )
+28/region = Rect2( 340, 17, 16, 16 )
+28/tile_mode = 0
+28/occluder_offset = Vector2( 0, 0 )
+28/navigation_offset = Vector2( 0, 0 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+28/shape_one_way = false
+28/shape_one_way_margin = 0.0
+28/shapes = [  ]
+28/z_index = 0
+29/name = "colored_transparent.png 29"
+29/texture = ExtResource( 4 )
+29/tex_offset = Vector2( 0, 0 )
+29/modulate = Color( 1, 1, 1, 1 )
+29/region = Rect2( 306, 34, 16, 16 )
+29/tile_mode = 0
+29/occluder_offset = Vector2( 0, 0 )
+29/navigation_offset = Vector2( 0, 0 )
+29/shape_offset = Vector2( 0, 0 )
+29/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+29/shape_one_way = false
+29/shape_one_way_margin = 0.0
+29/shapes = [  ]
+29/z_index = 0
+30/name = "colored_transparent.png 30"
+30/texture = ExtResource( 4 )
+30/tex_offset = Vector2( 0, 0 )
+30/modulate = Color( 1, 1, 1, 1 )
+30/region = Rect2( 323, 34, 16, 16 )
+30/tile_mode = 0
+30/occluder_offset = Vector2( 0, 0 )
+30/navigation_offset = Vector2( 0, 0 )
+30/shape_offset = Vector2( 0, 0 )
+30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+30/shape_one_way = false
+30/shape_one_way_margin = 0.0
+30/shapes = [  ]
+30/z_index = 0
+31/name = "colored_transparent.png 31"
+31/texture = ExtResource( 4 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 340, 34, 16, 16 )
+31/tile_mode = 0
+31/occluder_offset = Vector2( 0, 0 )
+31/navigation_offset = Vector2( 0, 0 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+31/shape_one_way = false
+31/shape_one_way_margin = 0.0
+31/shapes = [  ]
+31/z_index = 0
+32/name = "collision box"
+32/texture = ExtResource( 4 )
+32/tex_offset = Vector2( 0, 0 )
+32/modulate = Color( 1, 1, 1, 1 )
+32/region = Rect2( 0, 0, 16, 16 )
+32/tile_mode = 0
+32/occluder_offset = Vector2( 0, 0 )
+32/navigation_offset = Vector2( 0, 0 )
+32/shape_offset = Vector2( 0, 0 )
+32/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+32/shape = SubResource( 12 )
+32/shape_one_way = false
+32/shape_one_way_margin = 1.0
+32/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 12 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+32/z_index = 0
 
 [node name="PettingGame" type="Node2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="Pet" parent="." instance=ExtResource( 1 )]
 position = Vector2( 121.75, 90.2997 )
+input_pickable = true
 script = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 12 )
+tile_set = SubResource( 13 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 262150, 22, 0, 262151, 14, 0, 262152, 14, 0, 262153, 14, 0, 262154, 14, 0, 262155, 14, 0, 262156, 14, 0, 262157, 14, 0, 262158, 14, 0, 262159, 14, 0, 262160, 14, 0, 262161, 14, 0, 262162, 14, 0, 262163, 14, 0, 262164, 14, 0, 262165, 14, 0, 262166, 13, 0, 327686, 16, 0, 327702, 18, 0, 393222, 16, 0, 393238, 18, 0, 458758, 16, 0, 458774, 18, 0, 524294, 16, 0, 524310, 18, 0, 589830, 16, 0, 589831, 2, 0, 589832, 3, 0, 589834, 3, 0, 589835, 3, 0, 589836, 3, 0, 589837, 3, 0, 589838, 3, 0, 589839, 3, 0, 589840, 3, 0, 589841, 3, 0, 589842, 3, 0, 589843, 3, 0, 589844, 3, 0, 589845, 3, 0, 589846, 18, 0, 589847, 3, 0, 589848, 4, 0, 655366, 19, 0, 655367, 20, 0, 655368, 20, 0, 655369, 20, 0, 655370, 20, 0, 655371, 20, 0, 655372, 20, 0, 655373, 20, 0, 655374, 20, 0, 655375, 20, 0, 655376, 20, 0, 655377, 20, 0, 655378, 20, 0, 655379, 20, 0, 655380, 20, 0, 655381, 20, 0, 655382, 21, 0, 655384, 9, 0, 720903, 5, 0, 720920, 9, 0, 786439, 5, 0, 786456, 9, 0, 851975, 5, 0, 851992, 9, 0, 917511, 5, 0, 917528, 9, 0, 983047, 5, 0, 983064, 9, 0, 1048583, 5, 0, 1048600, 9, 0, 1114119, 5, 0, 1114136, 9, 0, 1179655, 5, 0, 1179672, 9, 0, 1245191, 6, 0, 1245192, 7, 0, 1245193, 7, 0, 1245194, 7, 0, 1245195, 7, 0, 1245196, 7, 0, 1245197, 7, 0, 1245198, 7, 0, 1245199, 7, 0, 1245200, 7, 0, 1245201, 7, 0, 1245202, 7, 0, 1245203, 7, 0, 1245204, 7, 0, 1245205, 7, 0, 1245206, 7, 0, 1245207, 7, 0, 1245208, 8, 0 )
+tile_data = PoolIntArray( 131075, 32, 0, 131076, 32, 0, 131077, 32, 0, 131078, 32, 0, 131079, 32, 0, 131080, 32, 0, 131081, 32, 0, 131082, 32, 0, 131083, 32, 0, 131084, 32, 0, 131085, 32, 0, 131086, 32, 0, 131087, 32, 0, 131088, 32, 0, 131089, 32, 0, 131090, 32, 0, 131091, 32, 0, 131092, 32, 0, 131093, 32, 0, 196611, 32, 0, 196612, 23, 0, 196613, 24, 0, 196614, 24, 0, 196615, 24, 0, 196616, 24, 0, 196617, 24, 0, 196618, 24, 0, 196619, 24, 0, 196620, 24, 0, 196621, 24, 0, 196622, 24, 0, 196623, 24, 0, 196624, 24, 0, 196625, 24, 0, 196626, 24, 0, 196627, 24, 0, 196628, 25, 0, 196629, 32, 0, 262147, 32, 0, 262148, 26, 0, 262164, 28, 0, 262165, 32, 0, 327683, 32, 0, 327684, 26, 0, 327688, 27, 0, 327697, 27, 0, 327700, 28, 0, 327701, 32, 0, 393219, 32, 0, 393220, 26, 0, 393224, 27, 0, 393231, 27, 0, 393236, 28, 0, 393237, 32, 0, 458755, 32, 0, 458756, 26, 0, 458763, 27, 0, 458772, 28, 0, 458773, 32, 0, 524291, 32, 0, 524292, 26, 0, 524293, 2, 0, 524294, 3, 0, 524296, 3, 0, 524297, 3, 0, 524298, 3, 0, 524299, 3, 0, 524300, 3, 0, 524301, 3, 0, 524302, 3, 0, 524303, 3, 0, 524304, 3, 0, 524305, 3, 0, 524306, 3, 0, 524307, 3, 0, 524308, 28, 0, 524309, 32, 0, 589827, 32, 0, 589828, 29, 0, 589829, 30, 0, 589830, 30, 0, 589831, 30, 0, 589832, 30, 0, 589833, 30, 0, 589834, 30, 0, 589835, 30, 0, 589836, 30, 0, 589837, 30, 0, 589838, 30, 0, 589839, 30, 0, 589840, 30, 0, 589841, 30, 0, 589842, 30, 0, 589843, 30, 0, 589844, 31, 0, 589845, 32, 0, 655363, 32, 0, 655364, 32, 0, 655365, 32, 0, 655366, 32, 0, 655367, 32, 0, 655368, 32, 0, 655369, 32, 0, 655370, 32, 0, 655371, 32, 0, 655372, 32, 0, 655373, 32, 0, 655374, 32, 0, 655375, 32, 0, 655376, 32, 0, 655377, 32, 0, 655378, 32, 0, 655379, 32, 0, 655380, 32, 0, 655381, 32, 0, 786439, 5, 0, 786456, 9, 0, 851975, 5, 0, 851992, 9, 0, 917511, 5, 0, 917528, 9, 0, 983047, 5, 0, 983064, 9, 0, 1048583, 5, 0, 1048600, 9, 0, 1114119, 5, 0, 1114136, 9, 0, 1179655, 5, 0, 1179672, 9, 0, 1245191, 6, 0, 1245192, 7, 0, 1245193, 7, 0, 1245194, 7, 0, 1245195, 7, 0, 1245196, 7, 0, 1245197, 7, 0, 1245198, 7, 0, 1245199, 7, 0, 1245200, 7, 0, 1245201, 7, 0, 1245202, 7, 0, 1245203, 7, 0, 1245204, 7, 0, 1245205, 7, 0, 1245206, 7, 0, 1245207, 7, 0, 1245208, 8, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="input_event" from="Pet" to="." method="_on_Pet_input_event"]
+[connection signal="ready" from="Pet" to="." method="_on_Pet_ready"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

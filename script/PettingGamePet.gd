@@ -1,20 +1,38 @@
 extends KinematicBody2D
 
-var x_speed = 150
-var y_speed = 175
+var x_speed
+var y_speed
 var velocity = Vector2()
 
 func _ready():
-	#rotation = 180 # Crab go sideways
-	velocity = Vector2(x_speed, y_speed) #.rotated(rotation)
-	# rotate the crab
-	pass
+	return
 
-func _process(delta):
+func _physics_process(delta):
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.normal)
-		rotate(velocity.angle())
-		if collision.collider.has_method("hit"):
-			collision.collider.hit()
-	pass
+		rotate_crab()
+	return
+
+func rotate_crab():
+	$CrabSprite.rotation = velocity.angle()
+	return
+
+func tune_difficulty(difficulty):
+	match difficulty:
+		1:
+			x_speed = 10
+			y_speed = 10
+		2:
+			x_speed = 100
+			y_speed = 100
+		3:
+			x_speed = 300
+			y_speed = 300
+		_: # set a default and erorr
+			printerr("invalid difficulty set")
+			x_speed = 50
+			y_speed = 50
+	velocity = Vector2(x_speed, y_speed)
+	rotate_crab() # make sure crab is sideways relative to new vector
+	return
