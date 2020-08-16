@@ -18,12 +18,16 @@ func change_segment_number(new_seg_number):
 	for i in container.get_children():
 		if i.name != "Start":
 			container.remove_child(i)
+			i.queue_free()
 	if(segment_number > 1):
 		for i in segment_number-2:
 			var middle_segment = MiddleSegment.instance()
 			container.add_child(middle_segment)
 		var end_segment = EndSegment.instance()
 		container.add_child(end_segment)
+	else:
+		container.remove_child(start)
+		start.queue_free()
 		
 	container.margin_right = segment_number * 32
 	return
