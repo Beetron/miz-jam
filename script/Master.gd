@@ -61,10 +61,10 @@ func load_petting_game():
 	return
 	
 func load_feeding_game():
-	#remove_current_scene()
-	#var feeding_game_scene = FeedingGame.instance()
-	#add_child(feeding_game_scene)
-	#current_scene = feeding_game_scene
+	remove_current_scene()
+	var feeding_game_scene = FeedingGame.instance()
+	add_child(feeding_game_scene)
+	current_scene = feeding_game_scene
 	pass
 	
 func load_killing_game():
