@@ -7,6 +7,9 @@ const FeedingGame = preload("res://scene/FeedingGame.tscn")
 const KillingGame = preload("res://scene/TrapdoorGame.tscn")
 const Loss = preload("res://scene/LossScreen.tscn")
 
+const EVOLUTION_THRESHOLD_LEVEL_2 = 2
+const EVOLUTION_THRESHOLD_LEVEL_3 = 4
+
 class Need:
 	var size : int
 	var name : String
@@ -26,6 +29,10 @@ onready var bloodlust = Need.new()
 var rng = RandomNumberGenerator.new()
 var needs = []
 var pet_name : String
+
+var current_evolution_level = 1
+var evolution_points = 0
+var lost_from : String
 
 
 # Called when the node enters the scene tree for the first time.
@@ -65,7 +72,7 @@ func load_feeding_game():
 	var feeding_game_scene = FeedingGame.instance()
 	add_child(feeding_game_scene)
 	current_scene = feeding_game_scene
-	pass
+	return
 	
 func load_killing_game():
 	#remove_current_scene()
@@ -74,11 +81,11 @@ func load_killing_game():
 	#current_scene = killing_game_scene
 	pass
 	
-func load_lose_screen(need_name):
+func load_lose_screen():
 	remove_current_scene()
 	var loss_scene = Loss.instance()
 	var loss_message = loss_scene.get_node("LossMessage")
-	match(need_name):
+	match(lost_from):
 		"Hunger":
 			loss_message.text = pet_name+" has starved..."
 		"Love":
@@ -87,6 +94,10 @@ func load_lose_screen(need_name):
 			loss_message.text = pet_name+" has left to go on a rampage..."
 	add_child(loss_scene)
 	current_scene = loss_scene
+	return
+	
+func load_win_screen():
+	remove_current_scene()
 	return
 
 func initialize_needs():
@@ -125,6 +136,15 @@ func won_game(need):
 		bloodlust.size += victory_amount
 		if bloodlust.size > starting_need:
 			bloodlust.size = starting_need
+
+	evolution_points += 1
+	if evolution_points == EVOLUTION_THRESHOLD_LEVEL_2 and current_evolution_level == 1:
+		current_evolution_level = 2
+		evolution_points = 0
+	elif evolution_points == EVOLUTION_THRESHOLD_LEVEL_3 and current_evolution_level == 2:
+		current_evolution_level = 3
+		evolution_points = 0
+	
 	return_to_menu()
 	return
 	
@@ -156,7 +176,10 @@ func reduce_needs():
 		if(i.size > 0):
 			i.bar.change_segment_number(i.size)
 		else:
-			load_lose_screen(i.name)
+			i.bar.change_segment_number(0)
+			var menu = get_node("Menu")
+			lost_from = i.name
+			menu.trigger_lose_anim()
 			break
 	return
 	

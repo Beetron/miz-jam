@@ -112,7 +112,11 @@ text = "Reduce needs"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FadeoutTimer" type="Timer" parent="."]
+wait_time = 2.0
 [connection signal="pressed" from="GUI/Feed" to="." method="_on_Feed_pressed"]
 [connection signal="pressed" from="GUI/Pet" to="." method="_on_Pet_pressed"]
 [connection signal="pressed" from="GUI/Kill" to="." method="_on_Kill_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="FadeoutTimer" to="." method="_on_FadeoutTimer_timeout"]
