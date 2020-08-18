@@ -6,6 +6,7 @@ const PettingGame = preload("res://scene/PettingGame.tscn")
 const FeedingGame = preload("res://scene/FeedingGame.tscn")
 const KillingGame = preload("res://scene/TrapdoorGame.tscn")
 const Loss = preload("res://scene/LossScreen.tscn")
+const Win = preload("res://scene/WinScreen.tscn")
 
 const EVOLUTION_THRESHOLD_LEVEL_2 = 2
 const EVOLUTION_THRESHOLD_LEVEL_3 = 4
@@ -26,14 +27,13 @@ onready var hunger = Need.new()
 onready var love = Need.new()
 onready var bloodlust = Need.new()
 
-var rng = RandomNumberGenerator.new()
 var needs = []
 var pet_name : String
 
 var current_evolution_level = 1
 var evolution_points = 0
 var lost_from : String
-
+var has_won = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,7 +55,6 @@ func load_intro():
 func load_menu():
 	remove_current_scene()
 	var menu_scene = Menu.instance()
-	set_menu_bars(menu_scene)
 	add_child(menu_scene)
 	current_scene = menu_scene
 	return
@@ -98,10 +97,14 @@ func load_lose_screen():
 	
 func load_win_screen():
 	remove_current_scene()
+	var win_scene = Win.instance()
+	var win_message = win_scene.get_node("WinMessage")
+	win_message.text = "Congratulations! "+pet_name+" has become an unstoppable machine of death!"
+	add_child(win_scene)
+	current_scene = win_scene
 	return
 
 func initialize_needs():
-	rng.randomize()
 	hunger.name = "Hunger"
 	hunger.last = LastReduction.SMALL
 	hunger.size = starting_need
@@ -115,14 +118,10 @@ func initialize_needs():
 	needs.append(love)
 	needs.append(bloodlust)
 	return
-	
-func set_menu_bars(menu):
-	hunger.bar = menu.get_node("GUI/GridContainer/HungerBar")
-	love.bar = menu.get_node("GUI/GridContainer/LoveBar")
-	bloodlust.bar = menu.get_node("GUI/GridContainer/BloodlustBar")
-	return
 
 func won_game(need):
+	return_to_menu()
+	var menu = get_node("Menu")
 	var victory_amount = 10
 	if need == "Hunger":
 		hunger.size += victory_amount
@@ -141,48 +140,21 @@ func won_game(need):
 	if evolution_points == EVOLUTION_THRESHOLD_LEVEL_2 and current_evolution_level == 1:
 		current_evolution_level = 2
 		evolution_points = 0
+		print("Achieved level 2")
+		menu.evolve(false)
+		
 	elif evolution_points == EVOLUTION_THRESHOLD_LEVEL_3 and current_evolution_level == 2:
 		current_evolution_level = 3
 		evolution_points = 0
-	
-	return_to_menu()
+		print("Achieved level 3")
+		menu.evolve(true)
 	return
 	
 func return_to_menu():
 	load_menu()
-	reduce_needs()
+	get_node("Menu").reduce_needs()
 	return
 
-#Reduce the need bars
-func reduce_needs():
-	var total = rng.randi_range(14, 18)
-	var remainder = total
-	var largest = total / 2
-	var medium = total / 3
-	remainder -= largest + medium
-	var small = remainder
-	
-	for i in needs:
-		if(i.last == LastReduction.SMALL):
-			i.last = LastReduction.LARGE
-			i.size -= largest
-		elif(i.last == LastReduction.MEDIUM):
-			i.last = LastReduction.SMALL
-			i.size -= small
-		else:
-			i.last = LastReduction.MEDIUM
-			i.size -= medium
-		
-		if(i.size > 0):
-			i.bar.change_segment_number(i.size)
-		else:
-			i.bar.change_segment_number(0)
-			var menu = get_node("Menu")
-			lost_from = i.name
-			menu.trigger_lose_anim()
-			break
-	return
-	
 func restart_game():
 	needs.clear()
 	initialize_needs()
