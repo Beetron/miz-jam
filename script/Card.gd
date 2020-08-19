@@ -1,8 +1,9 @@
 extends Area2D
 
-signal card_pressed(id)
+signal card_pressed(card)
 
-enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
+#enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
+onready var symbols = get_parent().symbols
 
 var _facedown
 var _symbol
@@ -22,7 +23,6 @@ func flip():
 
 # Sets the symbol on the card
 func set_card(symbol):
-	print(symbols.values())
 	if symbol in symbols.values():
 		_symbol = symbol
 		match symbol:
