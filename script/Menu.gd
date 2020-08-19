@@ -71,7 +71,7 @@ func _on_ReturnTimer_timeout():
 
 #Reduce the need bars
 func reduce_needs():
-	var total = rng.randi_range(14, 18)
+	var total = rng.randi_range(7, 10)
 	var remainder = total
 	var largest = total / 2
 	var medium = total / 3

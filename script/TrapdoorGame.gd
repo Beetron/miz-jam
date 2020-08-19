@@ -9,11 +9,29 @@ signal trapdoor_won
 var rng = RandomNumberGenerator.new()
 var hp = 3
 var bloodlust = 10.0
+var npc_speed_mod : float
 
 func _ready():
 	rng.randomize()
 	self.connect("trapdoor_lost", get_parent(), "return_to_menu")
 	self.connect("trapdoor_won", get_parent(), "won_game")
+	tune_difficulty(get_parent().difficulty)
+	return
+
+func tune_difficulty(difficulty):
+	var game_timer = get_node("GUI/Timer")
+	match difficulty:
+		1:
+			npc_speed_mod = 1.0
+			game_timer.wait_time = 30.0
+		2:
+			npc_speed_mod = 1.2
+			game_timer.wait_time = 20.0
+		3:
+			npc_speed_mod = 1.4
+			game_timer.wait_time = 15.0
+		_:
+			printerr("Invalid difficulty set.")
 	return
 
 func lose_hp():
@@ -39,7 +57,7 @@ func increase_bloodlust(increase_percent):
 func spawn_npc(position, direction):
 	var type = rng.randi_range(1,6)
 	var npc : Node
-	if type > 2:
+	if type >= 2:
 		npc = Victim.instance()
 	else:
 		npc = Enemy.instance()
@@ -47,6 +65,7 @@ func spawn_npc(position, direction):
 	npc.position = position
 	npc.scale.x = 4
 	npc.scale.y = 4
+	npc.velocity = npc.velocity * npc_speed_mod
 	if(direction == "Left"):
 		npc.travelling_left = true
 		npc.get_node("Sprite").flip_h = true
