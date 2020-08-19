@@ -9,15 +9,4 @@ script = ExtResource( 1 )
 wait_time = 30.0
 one_shot = true
 autostart = true
-
-[node name="Button" type="Button" parent="."]
-margin_left = 351.131
-margin_top = 381.766
-margin_right = 434.131
-margin_bottom = 401.766
-text = "Win"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
