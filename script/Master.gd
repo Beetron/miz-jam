@@ -10,6 +10,7 @@ const Win = preload("res://scene/WinScreen.tscn")
 
 const EVOLUTION_THRESHOLD_LEVEL_2 = 2
 const EVOLUTION_THRESHOLD_LEVEL_3 = 4
+const EVOLUTION_THRESHOLD_LEVEL_4 = 6
 
 class Need:
 	var size : int
@@ -142,11 +143,19 @@ func won_game(need):
 		evolution_points = 0
 		print("Achieved level 2")
 		menu.evolve(false)
+		difficulty += 1
 		
 	elif evolution_points == EVOLUTION_THRESHOLD_LEVEL_3 and current_evolution_level == 2:
 		current_evolution_level = 3
 		evolution_points = 0
 		print("Achieved level 3")
+		menu.evolve(false)
+		difficulty += 1
+		
+	elif evolution_points == EVOLUTION_THRESHOLD_LEVEL_4 and current_evolution_level == 3:
+		current_evolution_level = 4
+		evolution_points = 0
+		print("Achieved level 4")
 		menu.evolve(true)
 	return
 	

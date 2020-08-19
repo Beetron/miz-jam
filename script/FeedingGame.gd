@@ -41,11 +41,11 @@ func tune_difficulty(difficulty):
 		2:
 			num_cards = 8
 			grid_size = Vector2(4,2)
-			starting_x = starting_x - SPACING_X
+			starting_x -= SPACING_X
 		3:
 			num_cards = 12
 			grid_size = Vector2(4,3)
-			starting_x = starting_x - SPACING_X
+			starting_x -= SPACING_X
 		_: # set a default and erorr
 			printerr("invalid difficulty set")
 			num_cards = 4
