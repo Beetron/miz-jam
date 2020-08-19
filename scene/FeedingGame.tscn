@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://script/FeedingGame.gd" type="Script" id=1]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/colored_transparent.png" type="Texture" id=3]
 [ext_resource path="res://script/FeedingGameSymbolSprite.gd" type="Script" id=4]
 [ext_resource path="res://script/StringMap.gd" type="Script" id=5]
+[ext_resource path="res://assets/card_symbols.png" type="Texture" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pet Wobble"
@@ -112,10 +113,8 @@ scale = Vector2( 3, 3 )
 [node name="SymbolSprite" type="Sprite" parent="."]
 position = Vector2( 88, 193.768 )
 scale = Vector2( 2, 2 )
-texture = ExtResource( 3 )
-vframes = 22
-hframes = 48
-frame = 897
+texture = ExtResource( 6 )
+hframes = 6
 script = ExtResource( 4 )
 
 [node name="Bomb" type="AnimatedSprite" parent="."]

@@ -3,7 +3,6 @@ extends Area2D
 signal card_pressed(card)
 signal shake_finished(card)
 
-#enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
 onready var symbols = get_parent().symbols
 
 var _facedown
@@ -32,17 +31,17 @@ func set_card(symbol):
 		_symbol = symbol
 		match symbol:
 			symbols.HAM:
-				$SymbolSprite.frame_coords = Vector2(33,16)
+				$SymbolSprite.frame = 0
 			symbols.CHEESE:
-				$SymbolSprite.frame_coords = Vector2(34,16)
+				$SymbolSprite.frame = 1
 			symbols.FISH:
-				$SymbolSprite.frame_coords = Vector2(33,17)
+				$SymbolSprite.frame = 2
 			symbols.EGG:
-				$SymbolSprite.frame_coords = Vector2(34,17)
+				$SymbolSprite.frame = 3
 			symbols.APPLE:
-				$SymbolSprite.frame_coords = Vector2(33,18)
+				$SymbolSprite.frame = 4
 			symbols.PEAR:
-				$SymbolSprite.frame_coords = Vector2(34,18)
+				$SymbolSprite.frame = 5
 	else:
 		printerr("%s Not a valid card symbol." % symbol) 
 		return

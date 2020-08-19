@@ -13,17 +13,17 @@ func set_symbol(symbol):
 		_symbol = symbol
 		match symbol:
 			symbols.HAM:
-				frame_coords = Vector2(33,16)
+				frame = 0
 			symbols.CHEESE:
-				frame_coords = Vector2(34,16)
+				frame = 1
 			symbols.FISH:
-				frame_coords = Vector2(33,17)
+				frame = 2
 			symbols.EGG:
-				frame_coords = Vector2(34,17)
+				frame = 3
 			symbols.APPLE:
-				frame_coords = Vector2(33,18)
+				frame = 4
 			symbols.PEAR:
-				frame_coords = Vector2(34,18)
+				frame = 5
 	else:
 		printerr("%s Not a valid card symbol." % symbol) 
 		return
