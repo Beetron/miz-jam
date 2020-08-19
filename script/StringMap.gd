@@ -17,7 +17,6 @@ func _process(delta):
 	if remaining_string == 0:
 		hide_cells()
 		get_parent().get_node("Bomb").play()
-
 	
 	var target_string = int((timer.time_left / timer.wait_time) * total_cells)
 	if remaining_string > target_string:

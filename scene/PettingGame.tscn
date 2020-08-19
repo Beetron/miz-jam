@@ -484,13 +484,6 @@ wait_time = 30.0
 one_shot = true
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Bomb" type="AnimatedSprite" parent="."]
 position = Vector2( 22.5977, 205.656 )
 frames = SubResource( 19 )

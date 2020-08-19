@@ -1,6 +1,7 @@
 extends Area2D
 
 signal card_pressed(card)
+signal shake_finished(card)
 
 #enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
 onready var symbols = get_parent().symbols
@@ -19,6 +20,10 @@ func flip():
 	else:
 		$AnimationPlayer.play("Flip to back")
 		_facedown = true
+	return
+
+func shake():
+	$AnimationPlayer.play("Shake")
 	return
 
 # Sets the symbol on the card
@@ -50,5 +55,6 @@ func _on_Card_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			flip()
+			yield($AnimationPlayer, "animation_finished")
 			emit_signal("card_pressed", self)
 	return

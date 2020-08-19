@@ -14,13 +14,11 @@ func _process(delta):
 	if clicks >= 10:
 		print("winner")
 		emit_signal("petting_won", "Love")
-	$Label.text = String($Timer.time_left)
 	return
 
 func _on_Pet_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
-			#print("Mouse Click at: ", event.position)
 			clicks += 1
 			print("Total clicks: ", clicks)
 	return

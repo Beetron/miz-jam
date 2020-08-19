@@ -8,8 +8,9 @@ const Card = preload("res://scene/Card.tscn")
 enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
 
 # Artisanal handmade magic spacing numbers
-const spacing_x = 60
-const spacing_y = 86
+const SPACING_X = 60
+const SPACING_Y = 86
+const FLIP_TIMEOUT = 0.5
 
 # General state
 var cards = []
@@ -40,11 +41,11 @@ func tune_difficulty(difficulty):
 		2:
 			num_cards = 8
 			grid_size = Vector2(4,2)
-			starting_x = starting_x - spacing_x
+			starting_x = starting_x - SPACING_X
 		3:
 			num_cards = 12
 			grid_size = Vector2(4,3)
-			starting_x = starting_x - spacing_x
+			starting_x = starting_x - SPACING_X
 		_: # set a default and erorr
 			printerr("invalid difficulty set")
 			num_cards = 4
@@ -69,7 +70,7 @@ func setup_board():
 	# Loop over our grid and pop the next symbol off the stack
 	for x in grid_size.x:
 		for y in grid_size.y:
-			add_card(starting_x + (x * spacing_x), starting_y + (y * spacing_y), symbol_stack.pop_back())
+			add_card(starting_x + (x * SPACING_X), starting_y + (y * SPACING_Y), symbol_stack.pop_back())
 	return
 
 func add_card(x, y, type):
@@ -86,9 +87,7 @@ func select_food():
 	$SymbolSprite.set_symbol(target_symbol)
 
 func _on_card_pressed_event(card):
-	#print("Received press for card: ", card)
 	card.input_pickable = false
-	
 	if last_card_flipped == null:
 		last_card_flipped = card
 	else:
@@ -98,9 +97,7 @@ func _on_card_pressed_event(card):
 
 func check_match(old_card, new_card):
 	if old_card.get_symbol() == new_card.get_symbol():
-		print("We got a matching pair of cards")
 		if old_card.get_symbol() == target_symbol:
-			print("We got the crabs desire")
 			# Remove element based on value, not array index
 			remaining_symbols.erase(target_symbol)
 			if remaining_symbols.empty():
@@ -109,12 +106,16 @@ func check_match(old_card, new_card):
 			select_food()
 			return
 	# Not a desired match so reset the cards
+	old_card.shake()
+	new_card.shake()
+	yield(get_tree().create_timer(FLIP_TIMEOUT), "timeout")
 	reset_card(old_card)
 	reset_card(new_card)
 	return
 
 func reset_card(card):
 	card.flip()
+	yield(card.get_node("AnimationPlayer"), "animation_finished")
 	card.input_pickable = true
 	return
 

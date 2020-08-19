@@ -22,8 +22,6 @@ run/main_scene="res://scene/Master.tscn"
 
 window/size/width=800
 window/size/height=450
-window/stretch/mode="viewport"
-window/stretch/aspect="keep"
 
 [importer_defaults]
 
