@@ -25,7 +25,7 @@ func change_segment_number(new_seg_number):
 			container.add_child(middle_segment)
 		var end_segment = EndSegment.instance()
 		container.add_child(end_segment)
-	else:
+	elif segment_number <= 0:
 		container.remove_child(start)
 		start.queue_free()
 		

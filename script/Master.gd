@@ -4,7 +4,7 @@ const Intro = preload("res://scene/Intro.tscn")
 const Menu = preload("res://scene/Menu.tscn")
 const PettingGame = preload("res://scene/PettingGame.tscn")
 const FeedingGame = preload("res://scene/FeedingGame.tscn")
-const KillingGame = preload("res://scene/TrapdoorGame.tscn")
+const TrapdoorGame = preload("res://scene/TrapdoorGame.tscn")
 const Loss = preload("res://scene/LossScreen.tscn")
 const Win = preload("res://scene/WinScreen.tscn")
 
@@ -73,11 +73,11 @@ func load_feeding_game():
 	current_scene = feeding_game_scene
 	return
 	
-func load_killing_game():
-	#remove_current_scene()
-	#var killing_game_scene = KillingGame.instance()
-	#add_child(killing_game_scene)
-	#current_scene = killing_game_scene
+func load_trapdoor_game():
+	remove_current_scene()
+	var trapdoor_game_scene = TrapdoorGame.instance()
+	add_child(trapdoor_game_scene)
+	current_scene = trapdoor_game_scene
 	pass
 	
 func load_lose_screen():

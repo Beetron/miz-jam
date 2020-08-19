@@ -103,16 +103,6 @@ __meta__ = {
 position = Vector2( 390.617, 315.412 )
 scale = Vector2( 8, 8 )
 
-[node name="Button" type="Button" parent="."]
-margin_left = 114.124
-margin_top = 377.468
-margin_right = 216.124
-margin_bottom = 397.468
-text = "Reduce needs"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="FadeoutTimer" type="Timer" parent="."]
 wait_time = 2.0
 
@@ -121,6 +111,5 @@ wait_time = 2.0
 [connection signal="pressed" from="GUI/Feed" to="." method="_on_Feed_pressed"]
 [connection signal="pressed" from="GUI/Pet" to="." method="_on_Pet_pressed"]
 [connection signal="pressed" from="GUI/Kill" to="." method="_on_Kill_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="FadeoutTimer" to="." method="_on_FadeoutTimer_timeout"]
 [connection signal="timeout" from="ReturnTimer" to="." method="_on_ReturnTimer_timeout"]
