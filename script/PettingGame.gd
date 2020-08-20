@@ -8,6 +8,8 @@ var clicks = 0
 func _ready():
 	self.connect("petting_won", get_parent(), "won_game")
 	self.connect("petting_lost", get_parent(), "return_to_menu")
+	# set a sane default in case I left it on in the editor
+	$Pet/Hearts.emitting = false 
 	return
 
 func _process(delta):
@@ -20,6 +22,7 @@ func _on_Pet_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			clicks += 1
+			$AnimationPlayer.play("Particle Spam")
 			print("Total clicks: ", clicks)
 	return
 
