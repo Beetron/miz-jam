@@ -22,7 +22,7 @@ func _on_Pet_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			clicks += 1
-			$AnimationPlayer.play("Particle Spam")
+			$Pet/Hearts.restart()
 			print("Total clicks: ", clicks)
 	return
 
