@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const PATROL_SPEED = 100
 
+const Blood = preload("res://scene/TrapdoorGame/BloodParticle.tscn")
+
 signal collided_with_enemy
 signal collided_with_victim(increase_percent)
 
@@ -38,6 +40,12 @@ func _on_KillArea_body_entered(body):
 		body.died = true
 		hunted_list.erase(body)
 		body.call_deferred("queue_free")
+		
+		#This will keep adding particle emitters, 
+		#but it doesn't matter cos the scene gets removed after 10 victims anyway
+		var blood = Blood.instance()
+		blood.emitting = true
+		add_child(blood)
 		
 		if body.victim == true:
 			emit_signal("collided_with_victim", 10.0)
