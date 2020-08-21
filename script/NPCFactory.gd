@@ -3,6 +3,8 @@ extends Node2D
 export var direction : String
 export var spawn_time : float
 
+var spawning = false
+
 signal spawn_timeout(position)
 
 func _ready():
@@ -13,5 +15,6 @@ func _ready():
 	return
 
 func _on_SpawnTimer_timeout():
-	emit_signal("spawn_timeout", position, direction)
+	if spawning:
+		emit_signal("spawn_timeout", position, direction)
 	return

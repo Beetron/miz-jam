@@ -10,12 +10,14 @@ var rng = RandomNumberGenerator.new()
 var hp = 3
 var bloodlust = 10.0
 var npc_speed_mod : float
+var tutorial_mode = true
 
 func _ready():
 	rng.randomize()
 	self.connect("trapdoor_lost", get_parent(), "return_to_menu")
 	self.connect("trapdoor_won", get_parent(), "won_game")
 	tune_difficulty(get_parent().difficulty)
+	$TutorialArrowAnimation.play("DownArrowBounce")
 	return
 
 func tune_difficulty(difficulty):
@@ -86,4 +88,16 @@ func _on_DetectZone_body_entered(body):
 
 func _on_Timer_timeout():
 	emit_signal("trapdoor_lost")
+	return
+
+func tutorial_accepted():
+	tutorial_mode = false
+	$TutorialArrowAnimation.stop()
+	$DownArrow1.visible = false
+	$DownArrow2.visible = false
+	$DownArrow3.visible = false
+	$TutorialPopup.visible = false
+	get_node("GUI/Timer").start()
+	$NPCFactoryLeft.spawning = true
+	$NPCFactoryRight.spawning = true
 	return

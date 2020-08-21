@@ -14,14 +14,15 @@ func _process(delta):
 	if timer == null:
 		timer = get_parent().get_node("Timer")
 	
-	if remaining_string == 0:
-		hide_cells()
-		get_parent().get_node("Bomb").play()
-	
-	var target_string = int((timer.time_left / timer.wait_time) * total_cells)
-	if remaining_string > target_string:
-		burn_string()
-		remaining_string -= 1
+	if !timer.is_stopped():
+		if remaining_string == 0:
+			hide_cells()
+			get_parent().get_node("Bomb").play()
+		
+		var target_string = int((timer.time_left / timer.wait_time) * total_cells)
+		if remaining_string > target_string:
+			burn_string()
+			remaining_string -= 1
 	return
 
 func burn_string():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/colored_transparent.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/skull.png" type="Texture" id=11]
 [ext_resource path="res://assets/trapdoor.png" type="Texture" id=12]
+[ext_resource path="res://scene/TrapdoorGame/TrapdoorGameTutorial.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/downarrow.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.61475, 4.74325 )
@@ -445,6 +447,48 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 352, 10 )
 
+[sub_resource type="Animation" id=21]
+resource_name = "DownArrowBounce"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("DownArrow1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 206.017, 80.1594 ), Vector2( 206.017, 90.159 ), Vector2( 206.017, 80.1594 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DownArrow2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 399.299, 80.1594 ), Vector2( 399.299, 90.159 ), Vector2( 399.299, 80.1594 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DownArrow3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 596.326, 80.1594 ), Vector2( 596.326, 90.159 ), Vector2( 596.326, 80.1594 ) ]
+}
+
 [node name="TrapdoorGame" type="Node"]
 script = ExtResource( 3 )
 
@@ -548,7 +592,6 @@ frames = SubResource( 18 )
 [node name="Timer" type="Timer" parent="GUI"]
 wait_time = 30.0
 one_shot = true
-autostart = true
 
 [node name="StringMap" type="TileMap" parent="GUI"]
 position = Vector2( 0, 8 )
@@ -577,6 +620,29 @@ position = Vector2( 0, -24 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectZone"]
 position = Vector2( 400, 328 )
 shape = SubResource( 20 )
+
+[node name="DownArrow1" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 206.017, 89.3183 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+
+[node name="DownArrow2" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 399.299, 89.3183 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+
+[node name="DownArrow3" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 596.326, 89.3183 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 14 )
+
+[node name="TutorialPopup" parent="." instance=ExtResource( 13 )]
+
+[node name="TutorialArrowAnimation" type="AnimationPlayer" parent="."]
+anims/DownArrowBounce = SubResource( 21 )
 [connection signal="body_entered" from="Pet/KillArea" to="Pet" method="_on_KillArea_body_entered"]
 [connection signal="timeout" from="GUI/Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="DetectZone" to="." method="_on_DetectZone_body_entered"]
