@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://script/Intro.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
@@ -13,46 +20,51 @@ __meta__ = {
 }
 
 [node name="Introduction" type="Label" parent="IntroGUI"]
-margin_left = 243.0
-margin_top = 139.0
-margin_right = 536.0
-margin_bottom = 153.0
+margin_left = 83.5288
+margin_top = 130.091
+margin_right = 755.529
+margin_bottom = 146.091
+custom_fonts/font = SubResource( 1 )
 text = "Welcome to the wonderful world of pokemon!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSplitContainer" type="HSplitContainer" parent="IntroGUI"]
-margin_left = 241.0
-margin_top = 223.0
-margin_right = 526.0
-margin_bottom = 263.0
+margin_left = 126.965
+margin_top = 223.891
+margin_right = 740.965
+margin_bottom = 249.891
+dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="IntroGUI/HSplitContainer"]
-margin_top = 13.0
-margin_right = 167.0
-margin_bottom = 27.0
+margin_top = 5.0
+margin_right = 400.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 2 )
 text = "Enter your pet name here:"
 
 [node name="LineEdit" type="LineEdit" parent="IntroGUI/HSplitContainer"]
-margin_left = 179.0
-margin_right = 285.0
-margin_bottom = 40.0
-text = "Crab"
+margin_left = 412.0
+margin_right = 614.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 2 )
 max_length = 12
+clear_button_enabled = true
 caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartMenu" type="Button" parent="IntroGUI"]
-margin_left = 285.0
-margin_top = 360.0
-margin_right = 521.0
-margin_bottom = 433.0
+margin_left = 255.6
+margin_top = 331.491
+margin_right = 571.6
+margin_bottom = 353.491
+custom_fonts/font = SubResource( 2 )
 text = "Start your journey!"
 __meta__ = {
 "_edit_use_anchors_": false

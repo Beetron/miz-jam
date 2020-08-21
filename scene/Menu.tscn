@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/heart.png" type="Texture" id=2]
@@ -6,6 +6,41 @@
 [ext_resource path="res://assets/steak.png" type="Texture" id=4]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://script/Menu.gd" type="Script" id=6]
+[ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 7 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Crab Idle"
+length = 5.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Pet:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 2.5, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 390.617, 315.412 ), Vector2( 250, 315.412 ), Vector2( 350, 315.412 ), Vector2( 500, 315.412 ), Vector2( 390.617, 315.412 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Pet:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -10.0, 5.0, -5.0, 10.0, 5.0, 10.0, -5.0, 0.0, 10.0, 0.0 ]
+}
 
 [node name="Menu" type="Node"]
 script = ExtResource( 6 )
@@ -76,31 +111,38 @@ margin_right = 64.0
 margin_bottom = 95.0
 
 [node name="Feed" type="Button" parent="GUI"]
-margin_left = 333.731
-margin_top = 182.228
-margin_right = 433.731
-margin_bottom = 202.228
+margin_left = 323.387
+margin_top = 170.549
+margin_right = 423.387
+margin_bottom = 192.549
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Pet" type="Button" parent="GUI"]
-margin_left = 98.5301
-margin_top = 261.687
-margin_right = 188.53
-margin_bottom = 281.687
+margin_left = 87.7864
+margin_top = 225.147
+margin_right = 177.786
+margin_bottom = 247.147
+custom_fonts/font = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Kill" type="Button" parent="GUI"]
-margin_left = 584.824
-margin_top = 240.498
-margin_right = 656.824
-margin_bottom = 260.498
+margin_left = 486.277
+margin_top = 225.147
+margin_right = 558.277
+margin_bottom = 247.147
+custom_fonts/font = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Pet" parent="." instance=ExtResource( 5 )]
-position = Vector2( 390.617, 315.412 )
+position = Vector2( 455.529, 315.412 )
+rotation = -0.0163077
 scale = Vector2( 8, 8 )
 
 [node name="FadeoutTimer" type="Timer" parent="."]
@@ -108,6 +150,9 @@ wait_time = 2.0
 
 [node name="ReturnTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Crab Idle" = SubResource( 1 )
 [connection signal="pressed" from="GUI/Feed" to="." method="_on_Feed_pressed"]
 [connection signal="pressed" from="GUI/Pet" to="." method="_on_Pet_pressed"]
 [connection signal="pressed" from="GUI/Kill" to="." method="_on_Kill_pressed"]

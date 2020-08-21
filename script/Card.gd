@@ -25,6 +25,10 @@ func shake():
 	$AnimationPlayer.play("Shake")
 	return
 
+func sparkle():
+	$Sparkle.emitting = true
+	return
+
 # Sets the symbol on the card
 func set_card(symbol):
 	if symbol in symbols.values():

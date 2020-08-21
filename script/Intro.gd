@@ -7,6 +7,9 @@ func _ready():
 	return
  
 func _on_StartMenu_pressed():
-	get_parent().pet_name = get_node("IntroGUI/HSplitContainer/LineEdit").text
+	var pet_name = get_node("IntroGUI/HSplitContainer/LineEdit").text
+	if pet_name == "":
+		pet_name = "Crab"
+	get_parent().pet_name = pet_name
 	emit_signal("pet_selected")
 	return

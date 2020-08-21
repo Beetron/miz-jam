@@ -98,6 +98,8 @@ func _on_card_pressed_event(card):
 func check_match(old_card, new_card):
 	if old_card.get_symbol() == new_card.get_symbol():
 		if old_card.get_symbol() == target_symbol:
+			new_card.sparkle()
+			old_card.sparkle()
 			# Remove element based on value, not array index
 			remaining_symbols.erase(target_symbol)
 			if remaining_symbols.empty():

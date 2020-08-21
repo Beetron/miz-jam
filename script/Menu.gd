@@ -29,6 +29,8 @@ func _ready():
 	get_parent().hunger.bar = get_node("GUI/GridContainer/HungerBar")
 	get_parent().love.bar = get_node("GUI/GridContainer/LoveBar")
 	get_parent().bloodlust.bar = get_node("GUI/GridContainer/BloodlustBar")
+	
+	$AnimationPlayer.play("Crab Idle")
 	return
 	
 func _process(delta):
