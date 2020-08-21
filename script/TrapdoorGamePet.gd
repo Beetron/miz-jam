@@ -23,10 +23,19 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity * delta)
 		if collision:
 			velocity = velocity.bounce(collision.normal)
+		if $Eyebrow1.visible:
+			$Eyebrow1.visible = false
+			$Eyebrow2.visible = false
+			$CrabSprite.modulate = Color(1, 1, 1, 1)
+
 	else:
 		#Hunting
 		velocity.x = (hunted_list[0].position.x - position.x) * hunting_speed
 		move_and_collide(velocity * delta)
+		if !$Eyebrow1.visible:
+			$Eyebrow1.visible = true
+			$Eyebrow2.visible = true
+			$CrabSprite.modulate = Color(1, 0, 0, 1)
 	return
 
 func add_to_hunted_list(npc):
