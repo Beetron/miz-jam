@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/colored_transparent.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://script/StringMap.gd" type="Script" id=9]
 [ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/skull.png" type="Texture" id=11]
+[ext_resource path="res://assets/trapdoor.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.61475, 4.74325 )
@@ -460,6 +461,22 @@ collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pet/KillArea"]
 shape = SubResource( 1 )
+
+[node name="Eyebrow1" type="Sprite" parent="Pet"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -2.43208, -1.47906 )
+rotation = -1.0472
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 12 )
+
+[node name="Eyebrow2" type="Sprite" parent="Pet"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 2.00287, -1.37204 )
+rotation = 1.0472
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 12 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 16, -40 )
