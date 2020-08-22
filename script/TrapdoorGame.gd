@@ -86,7 +86,7 @@ func spawn_npc(position, direction):
 	else:
 		printerr("Bad NPCFactory direction")
 		
-	add_child(npc)
+	call_deferred("add_child", npc)
 	return
 
 

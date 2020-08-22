@@ -3,7 +3,7 @@ extends Node
 signal pet_selected
 
 func _ready():
-	self.connect("pet_selected", get_parent(), "load_menu")
+	self.connect("pet_selected", get_parent(), "return_to_menu")
 	return
  
 func _on_StartMenu_pressed():

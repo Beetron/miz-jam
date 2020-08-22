@@ -66,7 +66,7 @@ tracks/1/keys = {
 "values": [ 0.0, -90.0 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=5]
 resource_name = "DownArrowBounce"
 length = 0.5
 loop = true
@@ -136,5 +136,5 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="TutorialArrowAnimation" type="AnimationPlayer" parent="."]
-anims/DownArrowBounce = SubResource( 21 )
+anims/DownArrowBounce = SubResource( 5 )
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
