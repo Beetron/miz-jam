@@ -5,10 +5,10 @@
 [ext_resource path="res://assets/card.png" type="Texture" id=3]
 [ext_resource path="res://assets/sparkle.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6.21653, 7.57969 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "Flip to back"
 length = 0.1
 step = 0.05
@@ -49,7 +49,7 @@ tracks/2/keys = {
 "values": [ true, false, false ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 length = 0.1
 step = 0.05
 tracks/0/type = "value"
@@ -89,7 +89,7 @@ tracks/2/keys = {
 "values": [ false, true, true ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 resource_name = "Shake"
 length = 0.25
 step = 0.05
@@ -118,17 +118,18 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -5, 0 ), Vector2( 5, 0 ), Vector2( -5, 0 ), Vector2( 5, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.701835, 0.375844 ), 0.0330303, 0.0330303, 0, 0, Vector2( 1, 0 ), -0.0257751, 0.0, 0, 0 ]
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
+colors = PoolColorArray( 0.882353, 1, 0, 1, 1, 0.847059, 0, 1 )
 
 [node name="Card" type="Area2D"]
 scale = Vector2( 4, 4 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="CardSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -141,9 +142,9 @@ texture = ExtResource( 1 )
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/Flip to back" = SubResource( 7 )
-"anims/Flip to front" = SubResource( 8 )
-anims/Shake = SubResource( 9 )
+"anims/Flip to back" = SubResource( 2 )
+"anims/Flip to front" = SubResource( 3 )
+anims/Shake = SubResource( 4 )
 
 [node name="Sparkle" type="CPUParticles2D" parent="."]
 emitting = false
@@ -156,6 +157,6 @@ emission_sphere_radius = 8.0
 direction = Vector2( 0, 0 )
 gravity = Vector2( 0, 0 )
 angular_velocity = 25.04
-scale_amount_curve = SubResource( 4 )
-color_ramp = SubResource( 5 )
+scale_amount_curve = SubResource( 5 )
+color_ramp = SubResource( 6 )
 [connection signal="input_event" from="." to="." method="_on_Card_input_event"]
