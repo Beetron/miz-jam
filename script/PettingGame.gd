@@ -16,6 +16,9 @@ func _ready():
 	# set a sane default in case I left it on in the editor
 	$Pet/Hearts.emitting = false
 	
+	$Pet.type = get_parent().pet_type
+	$Pet.evolution = get_parent().current_evolution_level
+	
 	$Bar.change_segment_number(0)
 	
 	if get_parent() != null:

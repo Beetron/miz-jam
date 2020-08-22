@@ -15,8 +15,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="MizJam"
+config/name="GotchiWare"
 run/main_scene="res://scene/Master.tscn"
+config/icon="res://assets/icon.png"
 
 [display]
 

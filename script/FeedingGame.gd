@@ -33,6 +33,9 @@ func _ready():
 	self.connect("feeding_lost", get_parent(), "return_to_menu")
 	self.connect("feeding_tutorial_accepted", get_parent(), "feeding_tutorial_seen")
 	
+	$Pet.type = get_parent().pet_type
+	$Pet.evolution = get_parent().current_evolution_level
+	
 	if get_parent() != null:
 		tune_difficulty(get_parent().difficulty)
 		tutorial_seen = get_parent().seen_feeding_tutorial

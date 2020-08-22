@@ -21,6 +21,8 @@ func _ready():
 	if get_parent() != null:
 		tune_difficulty(get_parent().difficulty)
 		tutorial_mode = !get_parent().seen_trapdoor_tutorial
+		$Pet.type = get_parent().pet_type
+		$Pet.evolution = get_parent().current_evolution_level
 		
 	if !tutorial_mode:
 		start_gameplay()
@@ -62,8 +64,10 @@ func lose_hp():
 func increase_bloodlust(increase_percent):
 	bloodlust += increase_percent
 	get_node("GUI/BloodLustBar").change_segment_number(bloodlust)
-	if bloodlust >= 1.0:
+	if bloodlust >= 0.5:
+		print("trapdoor won")
 		emit_signal("trapdoor_won", "Bloodlust")
+	print(bloodlust)
 	return
 
 func spawn_npc(position, direction):

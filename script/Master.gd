@@ -31,6 +31,7 @@ onready var bloodlust = Need.new()
 
 var needs = []
 var pet_name : String
+var pet_type : String
 
 var current_evolution_level = 1
 var evolution_points = 0
@@ -44,7 +45,7 @@ var seen_feeding_tutorial = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_needs()
-	pass
+	return
 
 func remove_current_scene():
 	remove_child(current_scene)
@@ -89,7 +90,7 @@ func load_trapdoor_game():
 func load_lose_screen():
 	remove_current_scene()
 	var loss_scene = Loss.instance()
-	var loss_message = loss_scene.get_node("LossMessage")
+	var loss_message = loss_scene.get_node("CenterContainer/LossMessage")
 	match(lost_from):
 		"Hunger":
 			loss_message.text = pet_name+" has starved..."
@@ -185,4 +186,10 @@ func feeding_tutorial_seen():
 	
 func petting_tutorial_seen():
 	seen_petting_tutorial = true
+	return
+	
+func start_caring_for_pet(name, type):
+	pet_name = name
+	pet_type = type
+	return_to_menu()
 	return

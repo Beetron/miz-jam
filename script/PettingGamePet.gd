@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://script/Pet.gd"
 
 var x_speed
 var y_speed
@@ -13,11 +13,11 @@ func _physics_process(delta):
 		var collision = move_and_collide(velocity * delta)
 		if collision:
 			velocity = velocity.bounce(collision.normal)
-			rotate_crab()
+			rotate_animal()
 	return
 
-func rotate_crab():
-	$CrabSprite.rotation = velocity.angle()
+func rotate_animal():
+	$AnimalSprite.rotation = velocity.angle()
 	return
 
 func tune_difficulty(difficulty):
@@ -36,5 +36,5 @@ func tune_difficulty(difficulty):
 			x_speed = 50
 			y_speed = 50
 	velocity = Vector2(x_speed, y_speed)
-	rotate_crab() # make sure crab is sideways relative to new vector
+	rotate_animal() # make sure animal is sideways relative to new vector
 	return

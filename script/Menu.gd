@@ -26,6 +26,11 @@ func _ready():
 	pet_button.text = "Pet "+pet_name+"."
 	kill_button.text = "Let "+pet_name+" kill."
 	
+	$Pet.type = get_parent().pet_type
+	$Pet.evolution = get_parent().current_evolution_level
+	$EvolutionChange.text = "Congratulations! "+get_parent().pet_name+" has evolved!"
+
+	
 	get_parent().hunger.bar = get_node("TopLayer/GUI/GridContainer/HungerBar")
 	get_parent().love.bar = get_node("TopLayer/GUI/GridContainer/LoveBar")
 	get_parent().bloodlust.bar = get_node("TopLayer/GUI/GridContainer/BloodlustBar")
@@ -33,17 +38,29 @@ func _ready():
 	get_parent().hunger.previous_bar = get_node("BottomLayer/GUI/GridContainer/HungerBar")
 	get_parent().love.previous_bar = get_node("BottomLayer/GUI/GridContainer/LoveBar")
 	get_parent().bloodlust.previous_bar = get_node("BottomLayer/GUI/GridContainer/BloodlustBar")
-	
-	$AnimationPlayer.play("Crab Idle")
 	return
 	
 func _process(delta):
 	if !$FadeoutTimer.is_stopped():
 		#Fadeout our pet over the time
-		var pet_sprite = get_node("Pet/CrabSprite")
-		var previous_color = pet_sprite.modulate
+		var pet = get_node("Pet")
+		var previous_color = pet.modulate
 		previous_color[3] = previous_color[3] - delta / $FadeoutTimer.wait_time
-		pet_sprite.modulate = previous_color
+		pet.modulate = previous_color
+		
+	if !$ReturnTimer.is_stopped():
+		#Fadein our pets evolution over the time
+		var pet_evo : Node
+		match $Pet.evolution:
+			2:
+				pet_evo = get_node("Pet/Evolution2")
+			3:
+				pet_evo = get_node("Pet/Evolution3")
+			4:
+				pet_evo = get_node("Pet/Evolution4")
+		var previous_color = pet_evo.modulate
+		previous_color[3] = previous_color[3] + delta / $FadeoutTimer.wait_time
+		pet_evo.modulate = previous_color
 	return	
 
 func _on_Feed_pressed():
@@ -65,7 +82,16 @@ func _on_FadeoutTimer_timeout():
 func evolve(has_won):
 	get_node("BottomLayer/GUI").visible = false
 	get_node("TopLayer/GUI").visible = false
-	#TODO: animate evolution later
+	$EvolutionChange.visible = true
+	get_node("Pet/EvolutionSparkle").emitting = true
+	match get_parent().current_evolution_level:
+		2:
+			get_node("Pet/Evolution2").modulate = Color(1, 1, 1, 0)
+		3:
+			get_node("Pet/Evolution3").modulate = Color(1, 1, 1, 0)
+		4:
+			get_node("Pet/Evolution4").modulate = Color(1, 1, 1, 0)
+	$Pet.evolution = get_parent().current_evolution_level
 	move_to_win_screen = has_won
 	$ReturnTimer.start()
 	return
@@ -75,6 +101,8 @@ func _on_ReturnTimer_timeout():
 		emit_signal("evolution_complete")
 	get_node("BottomLayer/GUI").visible = true
 	get_node("TopLayer/GUI").visible = true
+	$EvolutionChange.visible = false
+	get_node("Pet/EvolutionSparkle").emitting = false
 	return
 
 #Reduce the need bars

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://script/Intro.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/selection.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -10,8 +11,55 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
-[node name="Node" type="Node"]
+[sub_resource type="Animation" id=3]
+resource_name = "SelectionBounce"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Selection:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 5, 5 ), Vector2( 6, 6 ), Vector2( 5, 5 ) ]
+}
+
+[node name="Intro" type="Node"]
 script = ExtResource( 1 )
+
+[node name="Bear" parent="." instance=ExtResource( 3 )]
+position = Vector2( 128.908, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+
+[node name="Crab" parent="." instance=ExtResource( 3 )]
+position = Vector2( 239.333, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+
+[node name="Croc" parent="." instance=ExtResource( 3 )]
+position = Vector2( 352, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+
+[node name="Dog" parent="." instance=ExtResource( 3 )]
+position = Vector2( 464, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+
+[node name="Lobster" parent="." instance=ExtResource( 3 )]
+position = Vector2( 574.013, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
+
+[node name="Octopus" parent="." instance=ExtResource( 3 )]
+position = Vector2( 688, 192 )
+scale = Vector2( 4, 4 )
+input_pickable = true
 
 [node name="IntroGUI" type="Control" parent="."]
 margin_right = 40.0
@@ -30,7 +78,7 @@ margin_bottom = 165.0
 custom_fonts/font = SubResource( 1 )
 text = "Welcome to the wonderful world of GotchiWare!
 
-Today you will receive a lovely new pet to take care of."
+Please pick a GotchiMon:"
 align = 1
 valign = 1
 autowrap = true
@@ -40,9 +88,9 @@ __meta__ = {
 
 [node name="HSplitContainer" type="HSplitContainer" parent="IntroGUI"]
 margin_left = 72.0
-margin_top = 224.0
+margin_top = 241.639
 margin_right = 686.0
-margin_bottom = 250.0
+margin_bottom = 267.639
 dragger_visibility = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,7 +130,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pet" parent="." instance=ExtResource( 3 )]
-position = Vector2( 400, 192 )
-scale = Vector2( 2, 2 )
+[node name="Selection" type="Sprite" parent="."]
+position = Vector2( 128.908, 192 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "SelectionBounce"
+anims/SelectionBounce = SubResource( 3 )
+[connection signal="input_event" from="Bear" to="." method="_on_Bear_input_event"]
+[connection signal="input_event" from="Crab" to="." method="_on_Crab_input_event"]
+[connection signal="input_event" from="Croc" to="." method="_on_Croc_input_event"]
+[connection signal="input_event" from="Dog" to="." method="_on_Dog_input_event"]
+[connection signal="input_event" from="Lobster" to="." method="_on_Lobster_input_event"]
+[connection signal="input_event" from="Octopus" to="." method="_on_Octopus_input_event"]
 [connection signal="pressed" from="IntroGUI/StartMenu" to="." method="_on_StartMenu_pressed"]

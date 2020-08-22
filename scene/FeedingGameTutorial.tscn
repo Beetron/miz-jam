@@ -156,5 +156,6 @@ __meta__ = {
 position = Vector2( 395.56, 281.525 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Flip Card"
 "anims/Flip Card" = SubResource( 4 )
 [connection signal="pressed" from="OK" to="." method="_on_OK_pressed"]
