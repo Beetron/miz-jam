@@ -36,6 +36,10 @@ var evolution_points = 0
 var lost_from : String
 var has_won = false
 
+var seen_petting_tutorial = false
+var seen_trapdoor_tutorial = true
+var seen_feeding_tutorial = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initialize_needs()
@@ -168,4 +172,16 @@ func restart_game():
 	needs.clear()
 	initialize_needs()
 	load_intro()
+	return
+
+func trapdoor_tutorial_seen():
+	seen_trapdoor_tutorial = true
+	return
+	
+func feeding_tutorial_seen():
+	seen_feeding_tutorial = true
+	return
+	
+func petting_tutorial_seen():
+	seen_petting_tutorial = true
 	return

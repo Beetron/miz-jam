@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/trapdoor.png" type="Texture" id=1]
 [ext_resource path="res://script/Trapdoor.gd" type="Script" id=2]
+[ext_resource path="res://assets/downarrow.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 47.8528, 39.8795 )
@@ -65,6 +66,24 @@ tracks/1/keys = {
 "values": [ 0.0, -90.0 ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "DownArrowBounce"
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("DownArrow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -40 ), Vector2( 0, -56 ), Vector2( 0, -40 ) ]
+}
+
 [node name="Trapdoor" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -109,4 +128,13 @@ shape = SubResource( 2 )
 playback_process_mode = 0
 anims/Close = SubResource( 3 )
 anims/Open = SubResource( 4 )
+
+[node name="DownArrow" type="Sprite" parent="."]
+modulate = Color( 0, 1, 0, 1 )
+position = Vector2( 0, -56 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="TutorialArrowAnimation" type="AnimationPlayer" parent="."]
+anims/DownArrowBounce = SubResource( 21 )
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

@@ -2,6 +2,7 @@ extends Node2D
 
 signal feeding_won(need)
 signal feeding_lost
+signal feeding_tutorial_accepted
 
 const Card = preload("res://scene/Card.tscn")
 
@@ -28,6 +29,7 @@ var last_card_flipped = null # last card that was flipped up
 func _ready():
 	self.connect("feeding_won", get_parent(), "won_game")
 	self.connect("feeding_lost", get_parent(), "return_to_menu")
+	self.connect("feeding_tutorial_accepted", get_parent(), "feeding_tutorial_seen")
 	tune_difficulty(get_parent().difficulty)
 	setup_board()
 	select_food()

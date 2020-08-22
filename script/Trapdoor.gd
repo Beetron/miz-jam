@@ -1,9 +1,11 @@
 extends Node2D
 
 export var closed = true
+var first_time_opened = false
 
 func _ready():
-	pass
+	$TutorialArrowAnimation.play("DownArrowBounce")
+	return
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -18,6 +20,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 func open():
 	$AnimationPlayer.play("Open")
 	closed = false
+	if first_time_opened == false:
+		first_time_opened = true
+		$DownArrow.visible = false
 	return
 	
 func close():

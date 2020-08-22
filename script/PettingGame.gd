@@ -2,12 +2,14 @@ extends Node2D
 
 signal petting_won(need)
 signal petting_lost
+signal petting_tutorial_accepted
 
 var clicks = 0
 
 func _ready():
 	self.connect("petting_won", get_parent(), "won_game")
 	self.connect("petting_lost", get_parent(), "return_to_menu")
+	self.connect("petting_tutorial_accepted", get_parent(), "petting_tutorial_seen")
 	# set a sane default in case I left it on in the editor
 	$Pet/Hearts.emitting = false 
 	return
