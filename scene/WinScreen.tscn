@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/WinScreen.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 15
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
 font_data = ExtResource( 3 )
 
 [node name="WinScreen" type="Control"]
@@ -23,7 +30,7 @@ margin_left = -397.622
 margin_top = 82.0553
 margin_right = 402.378
 margin_bottom = 142.055
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "Congratulations!
 pet_name has become an unstoppable machine of death!"
 align = 1
@@ -33,7 +40,7 @@ __meta__ = {
 }
 
 [node name="Pet" parent="." instance=ExtResource( 1 )]
-position = Vector2( 392, 230 )
+position = Vector2( 401, 230 )
 scale = Vector2( 10, 10 )
 
 [node name="Restart" type="Button" parent="."]
@@ -41,11 +48,26 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -39.5
-margin_top = -110.0
-margin_right = 37.5
-margin_bottom = -40.0
+margin_left = -86.0
+margin_top = -107.0
+margin_right = 86.0
+margin_bottom = -37.0
+custom_fonts/font = SubResource( 5 )
 text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 8.0
+margin_right = 505.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "Development by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
+Developed in 48 hours for Miz Jam 1
+15-08-2020"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

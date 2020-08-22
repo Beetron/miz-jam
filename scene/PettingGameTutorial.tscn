@@ -87,5 +87,6 @@ __meta__ = {
 position = Vector2( 413.378, 283.306 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 [connection signal="pressed" from="OK" to="." method="_on_OK_pressed"]
