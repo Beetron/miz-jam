@@ -1,10 +1,12 @@
-extends Node2D
+extends Node
 
 signal petting_won(need)
 signal petting_lost
 signal petting_tutorial_accepted
 
-var clicks = 0
+var _clicks = 0
+var _winning_click = 10
+var tutorial_seen : bool
 
 func _ready():
 	self.connect("petting_won", get_parent(), "won_game")
@@ -12,10 +14,28 @@ func _ready():
 	self.connect("petting_tutorial_accepted", get_parent(), "petting_tutorial_seen")
 	# set a sane default in case I left it on in the editor
 	$Pet/Hearts.emitting = false 
+	
+	if get_parent() != null:
+		tutorial_seen = get_parent().seen_petting_tutorial
+	
+	if tutorial_seen:
+		$TutorialPopup.visible = false
+		start_gameplay()
+	return
+
+func start_gameplay():
+	$Timer.start()
+	$Pet.game_started = true
+	return
+
+func tutorial_accepted():
+	emit_signal("petting_tutorial_accepted")
+	$TutorialPopup.visible = false
+	start_gameplay()
 	return
 
 func _process(delta):
-	if clicks >= 10:
+	if _clicks >= _winning_click:
 		print("winner")
 		emit_signal("petting_won", "Love")
 	return
@@ -23,9 +43,8 @@ func _process(delta):
 func _on_Pet_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
-			clicks += 1
+			_clicks += 1
 			$Pet/Hearts.restart()
-			print("Total clicks: ", clicks)
 	return
 
 func _on_Pet_ready():

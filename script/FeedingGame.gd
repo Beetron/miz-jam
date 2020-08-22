@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 signal feeding_won(need)
 signal feeding_lost
@@ -20,6 +20,7 @@ var grid_size
 var used_symbols
 var starting_x = 370
 var starting_y = 100
+var tutorial_seen : bool
 
 # Gameplay state
 var remaining_symbols
@@ -30,9 +31,20 @@ func _ready():
 	self.connect("feeding_won", get_parent(), "won_game")
 	self.connect("feeding_lost", get_parent(), "return_to_menu")
 	self.connect("feeding_tutorial_accepted", get_parent(), "feeding_tutorial_seen")
-	tune_difficulty(get_parent().difficulty)
+	
+	if get_parent() != null:
+		tune_difficulty(get_parent().difficulty)
+		tutorial_seen = get_parent().seen_feeding_tutorial
+	
+	if tutorial_seen:
+		$TutorialPopup.visible = false
+		start_gameplay()
+	return
+
+func start_gameplay():
 	setup_board()
 	select_food()
+	$Timer.start()
 	return
 
 func tune_difficulty(difficulty):
@@ -131,4 +143,10 @@ func game_won():
 func _on_Timer_timeout():
 	print("loser")
 	emit_signal("feeding_lost")
+	return
+
+func tutorial_accepted():
+	emit_signal("feeding_tutorial_accepted")
+	$TutorialPopup.visible = false
+	start_gameplay()
 	return

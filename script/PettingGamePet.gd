@@ -3,15 +3,17 @@ extends KinematicBody2D
 var x_speed
 var y_speed
 var velocity = Vector2()
+var game_started = false
 
 func _ready():
 	return
 
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		velocity = velocity.bounce(collision.normal)
-		rotate_crab()
+	if game_started:
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			velocity = velocity.bounce(collision.normal)
+			rotate_crab()
 	return
 
 func rotate_crab():

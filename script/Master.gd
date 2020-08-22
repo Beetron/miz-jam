@@ -37,7 +37,7 @@ var lost_from : String
 var has_won = false
 
 var seen_petting_tutorial = false
-var seen_trapdoor_tutorial = true
+var seen_trapdoor_tutorial = false
 var seen_feeding_tutorial = false
 
 # Called when the node enters the scene tree for the first time.
