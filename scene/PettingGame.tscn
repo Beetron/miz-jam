@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/PettingGame.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/heart.png" type="Texture" id=6]
 [ext_resource path="res://scene/PettingGameTutorial.tscn" type="PackedScene" id=7]
 [ext_resource path="res://script/PettingGameTutorial.gd" type="Script" id=8]
+[ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00458716, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.784404, 0.190909 ), -3.17091, -3.17091, 0, 0, Vector2( 0.990826, 0 ), 0.0, 0.0, 0, 0 ]
@@ -469,6 +470,23 @@ animations = [ {
 1/shapes = [  ]
 1/z_index = 0
 
+[sub_resource type="Animation" id=22]
+resource_name = "Heart Beat"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 4, 4 ), Vector2( 5, 5 ), Vector2( 4, 4 ) ]
+}
+
 [node name="PettingGame" type="Node"]
 script = ExtResource( 2 )
 
@@ -521,6 +539,20 @@ script = ExtResource( 5 )
 
 [node name="TutorialPopup" parent="." instance=ExtResource( 7 )]
 script = ExtResource( 8 )
+
+[node name="Bar" parent="." instance=ExtResource( 9 )]
+margin_left = 120.916
+margin_top = 23.0
+margin_right = 920.916
+margin_bottom = 55.0
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 120.916, 38.6811 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Heart Beat" = SubResource( 22 )
 [connection signal="input_event" from="Pet" to="." method="_on_Pet_input_event"]
 [connection signal="ready" from="Pet" to="." method="_on_Pet_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
