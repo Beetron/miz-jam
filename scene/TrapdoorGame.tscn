@@ -569,7 +569,7 @@ margin_left = 472.0
 margin_top = 8.0
 margin_right = 1272.0
 margin_bottom = 40.0
-starting_segment_number = 1
+starting_segment_number = 0.05
 
 [node name="DetectZone" type="Area2D" parent="."]
 position = Vector2( 0, -24 )

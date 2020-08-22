@@ -87,7 +87,7 @@ func reduce_needs():
 	var small = remainder
 	
 	for i in get_parent().needs:
-		i.previous_bar.change_segment_number(i.size)
+		i.previous_bar.change_segment_number(float(i.size) / 20.0)
 		if(i.last == get_parent().LastReduction.SMALL):
 			i.last = get_parent().LastReduction.LARGE
 			i.size -= largest
@@ -99,9 +99,9 @@ func reduce_needs():
 			i.size -= medium
 		
 		if(i.size > 0):
-			i.bar.change_segment_number(i.size)
+			i.bar.change_segment_number(float(i.size) / 20.0)
 		else:
-			i.bar.change_segment_number(0)
+			i.bar.change_segment_number(0.0)
 			get_parent().lost_from = i.name
 			get_node("TopLayer/GUI/NeedButtonContainer/Feed").visible = false
 			get_node("TopLayer/GUI/NeedButtonContainer/Pet").visible = false

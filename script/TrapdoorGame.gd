@@ -9,7 +9,7 @@ signal trapdoor_tutorial_accepted
 
 var rng = RandomNumberGenerator.new()
 var hp = 3
-var bloodlust = 10.0
+var bloodlust = 0.05
 var npc_speed_mod : float
 var tutorial_mode : bool 
 
@@ -61,8 +61,8 @@ func lose_hp():
 
 func increase_bloodlust(increase_percent):
 	bloodlust += increase_percent
-	get_node("GUI/BloodLustBar").change_segment_number(bloodlust / 10.0)
-	if bloodlust >= 100.0:
+	get_node("GUI/BloodLustBar").change_segment_number(bloodlust)
+	if bloodlust >= 1.0:
 		emit_signal("trapdoor_won", "Bloodlust")
 	return
 
