@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/PettingGame.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://script/StringMap.gd" type="Script" id=5]
 [ext_resource path="res://assets/heart.png" type="Texture" id=6]
 [ext_resource path="res://scene/PettingGameTutorial.tscn" type="PackedScene" id=7]
+[ext_resource path="res://script/PettingGameTutorial.gd" type="Script" id=8]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00458716, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.784404, 0.190909 ), -3.17091, -3.17091, 0, 0, Vector2( 0.990826, 0 ), 0.0, 0.0, 0, 0 ]
@@ -519,6 +520,7 @@ tile_data = PoolIntArray( 917506, -1610612736, 0, 917507, -1610612736, 0, 917508
 script = ExtResource( 5 )
 
 [node name="TutorialPopup" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 8 )
 [connection signal="input_event" from="Pet" to="." method="_on_Pet_input_event"]
 [connection signal="ready" from="Pet" to="." method="_on_Pet_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

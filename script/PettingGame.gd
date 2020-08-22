@@ -13,8 +13,7 @@ func _ready():
 	self.connect("petting_lost", get_parent(), "return_to_menu")
 	self.connect("petting_tutorial_accepted", get_parent(), "petting_tutorial_seen")
 	# set a sane default in case I left it on in the editor
-	$Pet/Hearts.emitting = false 
-	
+	$Pet/Hearts.emitting = false
 	if get_parent() != null:
 		tutorial_seen = get_parent().seen_petting_tutorial
 	

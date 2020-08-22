@@ -3,7 +3,7 @@ extends Area2D
 signal card_pressed(card)
 signal shake_finished(card)
 
-onready var symbols = get_parent().symbols
+onready var symbols = get_node("/root/Master/FeedingGame").symbols
 
 var _facedown
 var _symbol

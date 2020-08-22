@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://script/FeedingGame.gd" type="Script" id=1]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://script/StringMap.gd" type="Script" id=5]
 [ext_resource path="res://assets/card_symbols.png" type="Texture" id=6]
 [ext_resource path="res://scene/FeedingGameTutorial.tscn" type="PackedScene" id=7]
+[ext_resource path="res://script/FeedingGameTutorial.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pet Wobble"
@@ -131,4 +132,5 @@ tile_data = PoolIntArray( 917506, -1610612736, 0, 917507, -1610612736, 0, 917508
 script = ExtResource( 5 )
 
 [node name="TutorialPopup" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 8 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
