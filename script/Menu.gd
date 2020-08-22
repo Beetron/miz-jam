@@ -19,16 +19,20 @@ func _ready():
 	self.connect("feed_button_pressed", get_parent(), "load_feeding_game")
 	self.connect("kill_button_pressed", get_parent(), "load_trapdoor_game")
 	self.connect("pet_button_pressed", get_parent(), "load_petting_game")
-	var feed_button = get_node("GUI/Feed")
-	var pet_button = get_node("GUI/Pet")
-	var kill_button = get_node("GUI/Kill")
+	var feed_button = get_node("TopLayer/GUI/NeedButtonContainer/Feed")
+	var pet_button = get_node("TopLayer/GUI/NeedButtonContainer/Pet")
+	var kill_button = get_node("TopLayer/GUI/NeedButtonContainer/Kill")
 	feed_button.text = "Feed "+pet_name+"."
 	pet_button.text = "Pet "+pet_name+"."
-	kill_button.text = "Satisfy "+pet_name+"'s bloodlust."
+	kill_button.text = "Let "+pet_name+" kill."
 	
-	get_parent().hunger.bar = get_node("GUI/GridContainer/HungerBar")
-	get_parent().love.bar = get_node("GUI/GridContainer/LoveBar")
-	get_parent().bloodlust.bar = get_node("GUI/GridContainer/BloodlustBar")
+	get_parent().hunger.bar = get_node("TopLayer/GUI/GridContainer/HungerBar")
+	get_parent().love.bar = get_node("TopLayer/GUI/GridContainer/LoveBar")
+	get_parent().bloodlust.bar = get_node("TopLayer/GUI/GridContainer/BloodlustBar")
+	
+	get_parent().hunger.previous_bar = get_node("BottomLayer/GUI/GridContainer/HungerBar")
+	get_parent().love.previous_bar = get_node("BottomLayer/GUI/GridContainer/LoveBar")
+	get_parent().bloodlust.previous_bar = get_node("BottomLayer/GUI/GridContainer/BloodlustBar")
 	
 	$AnimationPlayer.play("Crab Idle")
 	return
@@ -59,7 +63,8 @@ func _on_FadeoutTimer_timeout():
 	return
 
 func evolve(has_won):
-	$GUI.visible = false
+	get_node("BottomLayer/GUI").visible = false
+	get_node("TopLayer/GUI").visible = false
 	#TODO: animate evolution later
 	move_to_win_screen = has_won
 	$ReturnTimer.start()
@@ -68,7 +73,8 @@ func evolve(has_won):
 func _on_ReturnTimer_timeout():
 	if move_to_win_screen:
 		emit_signal("evolution_complete")
-	$GUI.visible = true
+	get_node("BottomLayer/GUI").visible = true
+	get_node("TopLayer/GUI").visible = true
 	return
 
 #Reduce the need bars
@@ -81,6 +87,7 @@ func reduce_needs():
 	var small = remainder
 	
 	for i in get_parent().needs:
+		i.previous_bar.change_segment_number(i.size)
 		if(i.last == get_parent().LastReduction.SMALL):
 			i.last = get_parent().LastReduction.LARGE
 			i.size -= largest
@@ -96,9 +103,9 @@ func reduce_needs():
 		else:
 			i.bar.change_segment_number(0)
 			get_parent().lost_from = i.name
-			get_node("GUI/Feed").visible = false
-			get_node("GUI/Pet").visible = false
-			get_node("GUI/Kill").visible = false
+			get_node("TopLayer/GUI/NeedButtonContainer/Feed").visible = false
+			get_node("TopLayer/GUI/NeedButtonContainer/Pet").visible = false
+			get_node("TopLayer/GUI/NeedButtonContainer/Kill").visible = false
 			$FadeoutTimer.start()
 			break
 	return

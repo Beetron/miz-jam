@@ -17,6 +17,7 @@ class Need:
 	var name : String
 	var last = LastReduction
 	var bar : Node
+	var previous_bar : Node
 
 enum LastReduction {SMALL, MEDIUM, LARGE}
 

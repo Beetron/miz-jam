@@ -8,12 +8,7 @@
 [ext_resource path="res://script/Menu.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=7]
 
-[sub_resource type="DynamicFont" id=2]
-size = 12
-font_data = ExtResource( 7 )
-
-[sub_resource type="Animation" id=1]
-resource_name = "Crab Idle"
+[sub_resource type="Animation" id=2]
 length = 5.0
 loop = true
 step = 0.5
@@ -42,103 +37,13 @@ tracks/1/keys = {
 "values": [ 0.0, -10.0, 5.0, -5.0, 10.0, 5.0, 10.0, -5.0, 0.0, 10.0, 0.0 ]
 }
 
+[sub_resource type="DynamicFont" id=1]
+size = 12
+extra_spacing_space = -5
+font_data = ExtResource( 7 )
+
 [node name="Menu" type="Node"]
 script = ExtResource( 6 )
-
-[node name="GUI" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.05945
-margin_right = 2.05945
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GridContainer" type="GridContainer" parent="GUI"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 69.0
-margin_bottom = 101.0
-columns = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HungerIcon" type="TextureRect" parent="GUI/GridContainer"]
-margin_right = 30.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 5
-
-[node name="HungerBar" parent="GUI/GridContainer" instance=ExtResource( 1 )]
-margin_left = 34.0
-margin_right = 64.0
-margin_bottom = 29.0
-
-[node name="LoveIcon" type="TextureRect" parent="GUI/GridContainer"]
-margin_top = 33.0
-margin_right = 30.0
-margin_bottom = 62.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 5
-
-[node name="LoveBar" parent="GUI/GridContainer" instance=ExtResource( 1 )]
-margin_left = 34.0
-margin_top = 33.0
-margin_right = 64.0
-margin_bottom = 62.0
-
-[node name="BloodlustIcon" type="TextureRect" parent="GUI/GridContainer"]
-margin_top = 66.0
-margin_right = 30.0
-margin_bottom = 95.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 3 )
-expand = true
-stretch_mode = 5
-
-[node name="BloodlustBar" parent="GUI/GridContainer" instance=ExtResource( 1 )]
-margin_left = 34.0
-margin_top = 66.0
-margin_right = 64.0
-margin_bottom = 95.0
-
-[node name="Feed" type="Button" parent="GUI"]
-margin_left = 323.387
-margin_top = 170.549
-margin_right = 423.387
-margin_bottom = 192.549
-custom_fonts/font = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pet" type="Button" parent="GUI"]
-margin_left = 87.7864
-margin_top = 225.147
-margin_right = 177.786
-margin_bottom = 247.147
-custom_fonts/font = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Kill" type="Button" parent="GUI"]
-margin_left = 486.277
-margin_top = 225.147
-margin_right = 558.277
-margin_bottom = 247.147
-custom_fonts/font = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Pet" parent="." instance=ExtResource( 5 )]
 position = Vector2( 455.529, 315.412 )
@@ -152,9 +57,206 @@ wait_time = 2.0
 wait_time = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-"anims/Crab Idle" = SubResource( 1 )
-[connection signal="pressed" from="GUI/Feed" to="." method="_on_Feed_pressed"]
-[connection signal="pressed" from="GUI/Pet" to="." method="_on_Pet_pressed"]
-[connection signal="pressed" from="GUI/Kill" to="." method="_on_Kill_pressed"]
+"anims/Crab Idle" = SubResource( 2 )
+
+[node name="TopLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="GUI" type="Control" parent="TopLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.05945
+margin_right = 2.05945
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="TopLayer/GUI"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 101.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HungerIcon" type="TextureRect" parent="TopLayer/GUI/GridContainer"]
+margin_right = 30.0
+margin_bottom = 29.0
+hint_tooltip = "Hunger, can be gained by feeding."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="HungerBar" parent="TopLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 29.0
+hint_tooltip = "Hunger, can be gained by feeding."
+
+[node name="LoveIcon" type="TextureRect" parent="TopLayer/GUI/GridContainer"]
+margin_top = 33.0
+margin_right = 30.0
+margin_bottom = 62.0
+hint_tooltip = "Love, can be gained by petting."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
+
+[node name="LoveBar" parent="TopLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+margin_left = 34.0
+margin_top = 33.0
+margin_right = 64.0
+margin_bottom = 62.0
+hint_tooltip = "Love, can be gained by petting."
+
+[node name="BloodlustIcon" type="TextureRect" parent="TopLayer/GUI/GridContainer"]
+margin_top = 66.0
+margin_right = 30.0
+margin_bottom = 95.0
+hint_tooltip = "Bloodlust, can be gained by killing."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="BloodlustBar" parent="TopLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+margin_left = 34.0
+margin_top = 66.0
+margin_right = 64.0
+margin_bottom = 95.0
+hint_tooltip = "Bloodlust, can be gained by killing."
+
+[node name="NeedButtonContainer" type="HBoxContainer" parent="TopLayer/GUI"]
+anchor_bottom = 1.0
+margin_left = 14.0
+margin_top = 128.0
+margin_right = 782.0
+margin_bottom = -274.0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Feed" type="Button" parent="TopLayer/GUI/NeedButtonContainer"]
+margin_right = 242.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+icon = ExtResource( 4 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pet" type="Button" parent="TopLayer/GUI/NeedButtonContainer"]
+margin_left = 262.0
+margin_right = 504.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+icon = ExtResource( 2 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kill" type="Button" parent="TopLayer/GUI/NeedButtonContainer"]
+margin_left = 524.0
+margin_right = 768.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+icon = ExtResource( 3 )
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="BottomLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.05945
+margin_right = 2.05945
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="BottomLayer/GUI"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 69.0
+margin_bottom = 101.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HungerIcon" type="TextureRect" parent="BottomLayer/GUI/GridContainer"]
+margin_right = 30.0
+margin_bottom = 29.0
+hint_tooltip = "Hunger, can be gained by feeding."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+
+[node name="HungerBar" parent="BottomLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 34.0
+margin_right = 64.0
+margin_bottom = 29.0
+hint_tooltip = "Hunger, can be gained by feeding."
+
+[node name="LoveIcon" type="TextureRect" parent="BottomLayer/GUI/GridContainer"]
+margin_top = 33.0
+margin_right = 30.0
+margin_bottom = 62.0
+hint_tooltip = "Love, can be gained by petting."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+
+[node name="LoveBar" parent="BottomLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 34.0
+margin_top = 33.0
+margin_right = 64.0
+margin_bottom = 62.0
+hint_tooltip = "Love, can be gained by petting."
+
+[node name="BloodlustIcon" type="TextureRect" parent="BottomLayer/GUI/GridContainer"]
+margin_top = 66.0
+margin_right = 30.0
+margin_bottom = 95.0
+hint_tooltip = "Bloodlust, can be gained by killing."
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 5
+
+[node name="BloodlustBar" parent="BottomLayer/GUI/GridContainer" instance=ExtResource( 1 )]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 34.0
+margin_top = 66.0
+margin_right = 64.0
+margin_bottom = 95.0
+hint_tooltip = "Bloodlust, can be gained by killing."
 [connection signal="timeout" from="FadeoutTimer" to="." method="_on_FadeoutTimer_timeout"]
 [connection signal="timeout" from="ReturnTimer" to="." method="_on_ReturnTimer_timeout"]
+[connection signal="pressed" from="TopLayer/GUI/NeedButtonContainer/Feed" to="." method="_on_Feed_pressed"]
+[connection signal="pressed" from="TopLayer/GUI/NeedButtonContainer/Pet" to="." method="_on_Pet_pressed"]
+[connection signal="pressed" from="TopLayer/GUI/NeedButtonContainer/Kill" to="." method="_on_Kill_pressed"]
