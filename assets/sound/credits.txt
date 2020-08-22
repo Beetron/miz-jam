@@ -1,0 +1,9 @@
+# Credits for sound effects used
+
+## Brandon Morris (HaelDB)
+
+https://opengameart.org/users/haeldb
+
+* complete_task.wav
+* draw_card.wav
+* error.wav

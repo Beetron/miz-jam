@@ -12,6 +12,7 @@ enum symbols {HAM, CHEESE, FISH, EGG, APPLE, PEAR}
 const SPACING_X = 60
 const SPACING_Y = 86
 const FLIP_TIMEOUT = 0.5
+const WIN_TIMEOUT = 1
 
 # General state
 var cards = []
@@ -104,6 +105,7 @@ func _on_card_pressed_event(card):
 	card.input_pickable = false
 	if last_card_flipped == null:
 		last_card_flipped = card
+		$FlipSound.play()
 	else:
 		check_match(last_card_flipped, card)
 		last_card_flipped = null
@@ -114,6 +116,7 @@ func check_match(old_card, new_card):
 		if old_card.get_symbol() == target_symbol:
 			new_card.sparkle()
 			old_card.sparkle()
+			$MatchSound.play()
 			# Remove element based on value, not array index
 			remaining_symbols.erase(target_symbol)
 			if remaining_symbols.empty():
@@ -124,6 +127,7 @@ func check_match(old_card, new_card):
 	# Not a desired match so reset the cards
 	old_card.shake()
 	new_card.shake()
+	$NoMatchSound.play()
 	yield(get_tree().create_timer(FLIP_TIMEOUT), "timeout")
 	reset_card(old_card)
 	reset_card(new_card)
@@ -137,6 +141,10 @@ func reset_card(card):
 
 func game_won():
 	print("winner")
+	# Stop the timer to prevent a race condition between win and lose timers
+	$Timer.stop()
+	# Wait before going back to menu
+	yield(get_tree().create_timer(WIN_TIMEOUT), "timeout")
 	emit_signal("feeding_won", "Hunger")
 	return
 
