@@ -72,7 +72,7 @@ func increase_bloodlust(increase_percent):
 func spawn_npc(position, direction):
 	var type = rng.randi_range(1,6)
 	var npc : Node
-	if type >= 2:
+	if type >= 3:
 		npc = Victim.instance()
 	else:
 		npc = Enemy.instance()

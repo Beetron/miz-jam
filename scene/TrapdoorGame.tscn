@@ -473,12 +473,12 @@ tile_data = PoolIntArray( 262138, 1, 0, 262139, 1, 0, 262140, 1, 0, 262141, 1, 0
 [node name="NPCFactoryRight" parent="." instance=ExtResource( 5 )]
 position = Vector2( -162.506, 66.8717 )
 direction = "Right"
-spawn_time = 0.5
+spawn_time = 0.75
 
 [node name="NPCFactoryLeft" parent="." instance=ExtResource( 5 )]
 position = Vector2( 959.983, 57.0748 )
 direction = "Left"
-spawn_time = 0.5
+spawn_time = 0.75
 
 [node name="NPCKillZoneLeft" parent="." instance=ExtResource( 4 )]
 position = Vector2( -299.342, 73.9989 )
