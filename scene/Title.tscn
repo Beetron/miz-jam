@@ -64,7 +64,7 @@ margin_top = 8.0
 margin_right = 505.0
 margin_bottom = 65.0
 custom_fonts/font = SubResource( 3 )
-text = "Programming by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
+text = "Programming by Robert Scundi [nduja]   and Liam O'Connell [Beetron]
 Music by Nicholas Kendall [amourouge]
 Developed in 48 hours for Miz Jam 1
 23-08-2020"
