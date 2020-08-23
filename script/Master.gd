@@ -134,15 +134,18 @@ func won_game(need):
 		hunger.size += victory_amount
 		if hunger.size > starting_need:
 			hunger.size = starting_need
+		hunger.bar.change_segment_number(float(hunger.size) / 20.0)
 	elif need == "Love":
 		love.size += victory_amount
 		if love.size > starting_need:
 			love.size = starting_need
+		love.bar.change_segment_number(float(love.size) / 20.0)
 	elif need == "Bloodlust":
 		bloodlust.size += victory_amount
 		if bloodlust.size > starting_need:
 			bloodlust.size = starting_need
-
+		bloodlust.bar.change_segment_number(float(bloodlust.size) / 20.0)
+	
 	evolution_points += 1
 	if evolution_points == EVOLUTION_THRESHOLD_LEVEL_2 and current_evolution_level == 1:
 		current_evolution_level = 2

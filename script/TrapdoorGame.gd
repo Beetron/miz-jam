@@ -67,7 +67,6 @@ func increase_bloodlust(increase_percent):
 	if bloodlust >= 0.5:
 		print("trapdoor won")
 		emit_signal("trapdoor_won", "Bloodlust")
-	print(bloodlust)
 	return
 
 func spawn_npc(position, direction):
