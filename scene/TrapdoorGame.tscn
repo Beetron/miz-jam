@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/colored_transparent.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/skull.png" type="Texture" id=11]
 [ext_resource path="res://assets/music/trapdoor.ogg" type="AudioStream" id=12]
 [ext_resource path="res://scene/TrapdoorGame/TrapdoorGameTutorial.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/sound/kill2.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/sound/kill1.ogg" type="AudioStream" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.61475, 4.74325 )
@@ -462,6 +464,14 @@ collision_mask = 2147483650
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pet/KillArea"]
 shape = SubResource( 1 )
+
+[node name="Killsound1" type="AudioStreamPlayer" parent="Pet"]
+stream = ExtResource( 15 )
+volume_db = -10.0
+
+[node name="Killsound2" type="AudioStreamPlayer" parent="Pet"]
+stream = ExtResource( 14 )
+volume_db = -10.0
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 16, -40 )

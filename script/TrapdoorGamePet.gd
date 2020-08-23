@@ -12,7 +12,10 @@ var hunting = false
 var hunting_speed = 10
 var hunted_list = []
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
+	rng.randomize()
 	self.connect("collided_with_enemy", get_parent(), "lose_hp")
 	self.connect("collided_with_victim", get_parent(), "increase_bloodlust")
 	return
@@ -46,6 +49,17 @@ func add_to_hunted_list(npc):
 		hunted_list.append(npc)
 	return
 
+func play_kill_sound():
+	var sound = rng.randi_range(0,1)
+	var pitch = rng.randf_range(0.8, 1.2)
+	if sound == 1:
+		$Killsound1.pitch_scale = pitch
+		$Killsound1.play()
+	else:
+		$Killsound2.pitch_scale = pitch
+		$Killsound2.play()
+
+	return
 
 func _on_KillArea_body_entered(body):
 	if body.is_in_group("npc"):
@@ -64,6 +78,8 @@ func _on_KillArea_body_entered(body):
 		else:
 			call_deferred("emit_signal", "collided_with_enemy")
 				
+		play_kill_sound()
+		
 		if hunted_list.empty():
 			if velocity.x > 0:
 				velocity.x = PATROL_SPEED

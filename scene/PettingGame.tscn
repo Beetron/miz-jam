@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://script/PettingGame.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://script/PettingGameTutorial.gd" type="Script" id=8]
 [ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/music/petting.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/sound/complete_ task.wav" type="AudioStream" id=13]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00458716, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.784404, 0.190909 ), -3.17091, -3.17091, 0, 0, Vector2( 0.990826, 0 ), 0.0, 0.0, 0, 0 ]
@@ -563,6 +564,10 @@ one_shot = true
 stream = ExtResource( 10 )
 autoplay = true
 bus = "Music"
+
+[node name="PetSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -10.0
 [connection signal="input_event" from="Pet" to="." method="_on_Pet_input_event"]
 [connection signal="ready" from="Pet" to="." method="_on_Pet_ready"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

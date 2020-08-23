@@ -7,3 +7,12 @@ https://opengameart.org/users/haeldb
 * complete_task.wav
 * draw_card.wav
 * error.wav
+
+Killing sounds (in the trapdoor game) from:
+https://opengameart.org/content/8-wet-squish-slurp-impacts
+
+Bombtimer sound, evolution sound from:
+https://opengameart.org/content/512-sound-effects-8-bit-style
+
+Menu button sound effect from:
+https://opengameart.org/content/gui-sound-effects

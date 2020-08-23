@@ -11,7 +11,10 @@ var _winning_clicks = 10
 var progress : float
 var tutorial_seen : bool
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
+	rng.randomize()
 	self.connect("petting_won", get_parent(), "won_game")
 	self.connect("petting_lost", get_parent(), "return_to_menu")
 	self.connect("petting_tutorial_accepted", get_parent(), "petting_tutorial_seen")
@@ -54,11 +57,18 @@ func _process(delta):
 		emit_signal("petting_won", "Love")
 	return
 
+func play_pet_sound():
+	var pitch = rng.randf_range(0.8, 1.2)
+	$PetSound1.pitch_scale = pitch
+	$PetSound1.play()
+	return
+
 func _on_Pet_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.pressed:
 			_clicks += 1
 			$AnimationPlayer.play("Heart Beat")
+			play_pet_sound()
 			$Bar.change_segment_number(float(_clicks) / _winning_clicks)
 			$Pet/Hearts.restart()
 	return

@@ -99,6 +99,7 @@ func evolve(has_won):
 		4:
 			get_node("Pet/Evolution4").modulate = Color(1, 1, 1, 0)
 	$Pet.evolution = get_parent().current_evolution_level
+	$Evolution.play()
 	move_to_win_screen = has_won
 	$ReturnTimer.start()
 	return
