@@ -34,6 +34,11 @@ func _physics_process(delta):
 		if !hunting:
 			hunting = true
 			$AnimalSprite.modulate = Color(1, 0, 0, 1)
+			
+	if velocity.x < 0:
+		get_node("AnimalSprite").flip_h = true
+	else:
+		get_node("AnimalSprite").flip_h = false
 	return
 
 func add_to_hunted_list(npc):

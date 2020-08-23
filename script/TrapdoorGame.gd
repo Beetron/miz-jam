@@ -30,6 +30,8 @@ func _ready():
 		get_node("TrapdoorLeft/DownArrow").visible = false
 		get_node("TrapdoorMiddle/DownArrow").visible = false
 		get_node("TrapdoorRight/DownArrow").visible = false
+		
+	get_node("Pet/AnimationPlayer").play("Walk")
 	return
 
 func tune_difficulty(difficulty):

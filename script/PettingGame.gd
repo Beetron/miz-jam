@@ -27,6 +27,8 @@ func _ready():
 	if tutorial_seen:
 		$TutorialPopup.visible = false
 		start_gameplay()
+		
+	get_node("Pet/AnimationPlayer").play("Walk")
 	return
 
 func start_gameplay():
