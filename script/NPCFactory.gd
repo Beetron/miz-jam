@@ -9,7 +9,6 @@ signal spawn_timeout(position)
 
 func _ready():
 	self.connect("spawn_timeout", get_parent(), "spawn_npc")
-	emit_signal("spawn_timeout", position, direction)
 	$SpawnTimer.wait_time = spawn_time
 	$SpawnTimer.start()
 	return

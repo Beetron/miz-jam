@@ -12,7 +12,6 @@ export var victim : bool
 func _ready():
 	rng.randomize()
 	walk_speed = rng.randf_range(40, 160)
-	travelling_left = rng.randi_range(0, 1)
 	$Sprite.frame = rng.randi_range(0, 5)
 	return
 
