@@ -6,6 +6,8 @@ const Victim = preload("res://scene/TrapdoorGame/Victim.tscn")
 signal trapdoor_lost
 signal trapdoor_won
 signal trapdoor_tutorial_accepted
+signal ui_button_pressed
+signal out_of_time
 
 var rng = RandomNumberGenerator.new()
 var hp = 3
@@ -16,8 +18,10 @@ var tutorial_mode : bool
 func _ready():
 	rng.randomize()
 	self.connect("trapdoor_lost", get_parent(), "return_to_menu")
+	self.connect("out_of_time", get_parent(), "play_explode_sound")
 	self.connect("trapdoor_won", get_parent(), "won_game")
 	self.connect("trapdoor_tutorial_accepted", get_parent(), "trapdoor_tutorial_seen")
+	self.connect("ui_button_pressed", get_parent(), "play_ui_sound")
 	if get_parent() != null:
 		tune_difficulty(get_parent().difficulty)
 		tutorial_mode = !get_parent().seen_trapdoor_tutorial
@@ -48,6 +52,7 @@ func tune_difficulty(difficulty):
 			game_timer.wait_time = 15.0
 		_:
 			printerr("Invalid difficulty set.")
+	get_node("GUI/BombExplode").wait_time = game_timer.wait_time - 1
 	return
 
 func lose_hp():
@@ -109,11 +114,18 @@ func tutorial_accepted():
 	tutorial_mode = false
 	$TutorialPopup.visible = false
 	start_gameplay()
+	emit_signal("ui_button_pressed")
 	emit_signal("trapdoor_tutorial_accepted")
 	return
 	
 func start_gameplay():
 	get_node("GUI/Timer").start()
+	get_node("GUI/BombExplode").start()
 	$NPCFactoryLeft.spawning = true
 	$NPCFactoryRight.spawning = true
+	return
+
+
+func _on_BombExplode_timeout():
+	emit_signal("out_of_time")
 	return

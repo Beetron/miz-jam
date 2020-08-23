@@ -7,10 +7,10 @@
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 12
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 12
 font_data = ExtResource( 2 )
 
 [node name="LossScreen" type="Control"]
@@ -38,20 +38,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Credits" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 8.0
-margin_right = 505.0
-margin_bottom = 65.0
-custom_fonts/font = SubResource( 2 )
-text = "Development by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
-Developed in 48 hours for Miz Jam 1
-15-08-2020"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Restart" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -61,8 +47,23 @@ margin_left = -86.0
 margin_top = -112.0
 margin_right = 86.0
 margin_bottom = -42.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 8.0
+margin_right = 505.0
+margin_bottom = 65.0
+custom_fonts/font = SubResource( 3 )
+text = "Programming by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
+Music by Nicholas Kendall [amourouge]
+Developed in 48 hours for Miz Jam 1
+23-08-2020"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

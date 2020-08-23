@@ -3,6 +3,8 @@ extends Node
 signal feeding_won(need)
 signal feeding_lost
 signal feeding_tutorial_accepted
+signal ui_button_pressed
+signal out_of_time
 
 const Card = preload("res://scene/Card.tscn")
 
@@ -32,6 +34,8 @@ func _ready():
 	self.connect("feeding_won", get_parent(), "won_game")
 	self.connect("feeding_lost", get_parent(), "return_to_menu")
 	self.connect("feeding_tutorial_accepted", get_parent(), "feeding_tutorial_seen")
+	self.connect("ui_button_pressed", get_parent(), "play_ui_sound")
+	self.connect("out_of_time", get_parent(), "play_explode_sound")
 	
 	$Pet.type = get_parent().pet_type
 	$Pet.evolution = get_parent().current_evolution_level
@@ -49,6 +53,7 @@ func start_gameplay():
 	setup_board()
 	select_food()
 	$Timer.start()
+	$ExplodeTimer.start()
 	return
 
 func tune_difficulty(difficulty):
@@ -157,7 +162,12 @@ func _on_Timer_timeout():
 	return
 
 func tutorial_accepted():
+	emit_signal("ui_button_pressed")
 	emit_signal("feeding_tutorial_accepted")
 	$TutorialPopup.visible = false
 	start_gameplay()
+	return
+
+func _on_ExplodeTimer_timeout():
+	emit_signal("out_of_time")
 	return

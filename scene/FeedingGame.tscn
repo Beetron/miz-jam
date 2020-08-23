@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://script/FeedingGame.gd" type="Script" id=1]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/sound/complete_ task.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sound/error.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/sound/draw_card.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/music/feeding.ogg" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Pet Wobble"
@@ -145,4 +146,14 @@ stream = ExtResource( 10 )
 
 [node name="FlipSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
+[node name="ExplodeTimer" type="Timer" parent="."]
+wait_time = 29.0
+one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+bus = "Music"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="ExplodeTimer" to="." method="_on_ExplodeTimer_timeout"]

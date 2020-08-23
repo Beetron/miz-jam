@@ -3,6 +3,8 @@ extends Node
 signal petting_won(need)
 signal petting_lost
 signal petting_tutorial_accepted
+signal ui_button_pressed
+signal out_of_time
 
 var _clicks = 0
 var _winning_clicks = 10
@@ -13,6 +15,8 @@ func _ready():
 	self.connect("petting_won", get_parent(), "won_game")
 	self.connect("petting_lost", get_parent(), "return_to_menu")
 	self.connect("petting_tutorial_accepted", get_parent(), "petting_tutorial_seen")
+	self.connect("ui_button_pressed", get_parent(), "play_ui_sound")
+	self.connect("out_of_time", get_parent(), "play_explode_sound")
 	# set a sane default in case I left it on in the editor
 	$Pet/Hearts.emitting = false
 	
@@ -32,7 +36,9 @@ func _ready():
 	return
 
 func start_gameplay():
+	emit_signal("ui_button_pressed")
 	$Timer.start()
+	$ExplodeTimer.start()
 	$Pet.game_started = true
 	return
 
@@ -64,4 +70,9 @@ func _on_Pet_ready():
 func _on_Timer_timeout():
 	print("loser")
 	emit_signal("petting_lost")
+	return
+
+
+func _on_ExplodeTimer_timeout():
+	emit_signal("out_of_time")
 	return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scene/NeedBar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/heart.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://script/Menu.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/sparkle.png" type="Texture" id=8]
+[ext_resource path="res://assets/music/menu.ogg" type="AudioStream" id=9]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.701835, 0.375844 ), 0.0330303, 0.0330303, 0, 0, Vector2( 1, 0 ), -0.0257751, 0.0, 0, 0 ]
@@ -300,6 +301,11 @@ custom_fonts/font = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
 [connection signal="timeout" from="FadeoutTimer" to="." method="_on_FadeoutTimer_timeout"]
 [connection signal="timeout" from="ReturnTimer" to="." method="_on_ReturnTimer_timeout"]
 [connection signal="pressed" from="TopLayer/GUI/NeedButtonContainer/Feed" to="." method="_on_Feed_pressed"]

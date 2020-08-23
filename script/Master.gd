@@ -175,6 +175,8 @@ func return_to_menu():
 
 func restart_game():
 	needs.clear()
+	pet_name = ""
+	pet_type = ""
 	initialize_needs()
 	load_intro()
 	return
@@ -195,4 +197,12 @@ func start_caring_for_pet(name, type):
 	pet_name = name
 	pet_type = type
 	return_to_menu()
+	return
+
+func play_ui_sound():
+	$UIAccept.play()
+	return
+
+func play_explode_sound():
+	$OutOfTime.play()
 	return

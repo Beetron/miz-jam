@@ -1,11 +1,13 @@
 extends Node
 
 signal pet_selected
+signal ui_button_pressed
 
 var pet_type = "Bear"
 
 func _ready():
 	self.connect("pet_selected", get_parent(), "start_caring_for_pet")
+	self.connect("ui_button_pressed", get_parent(), "play_ui_sound")
 	$Bear.type = "Bear"
 	$Crab.type = "Crab"
 	$Croc.type = "Croc"
@@ -15,6 +17,7 @@ func _ready():
 	return
  
 func _on_StartMenu_pressed():
+	emit_signal("ui_button_pressed")
 	var pet_name = get_node("IntroGUI/HSplitContainer/LineEdit").text
 	if pet_name == "":
 		pet_name = "Pet"

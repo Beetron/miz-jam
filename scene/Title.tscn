@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://script/Title.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/music/title.ogg" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -63,11 +64,17 @@ margin_top = 8.0
 margin_right = 505.0
 margin_bottom = 65.0
 custom_fonts/font = SubResource( 3 )
-text = "Development by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
+text = "Programming by Robert Scundi [SilentFang] and Liam O'Connell [Beetron]
+Music by Nicholas Kendall [amourouge]
 Developed in 48 hours for Miz Jam 1
-15-08-2020"
+23-08-2020"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
 [connection signal="pressed" from="TitleGUI/StartGame" to="." method="_on_StartGame_pressed"]

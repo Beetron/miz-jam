@@ -5,6 +5,7 @@ signal kill_button_pressed
 signal pet_button_pressed
 signal fadeout_complete
 signal evolution_complete
+signal ui_button_pressed
 
 var rng = RandomNumberGenerator.new()
 var move_to_win_screen = false
@@ -13,6 +14,9 @@ onready var pet_name = get_parent().pet_name
 
 func _ready():
 	rng.randomize()
+	
+	self.connect("ui_button_pressed", get_parent(), "play_ui_sound")
+	
 	self.connect("fadeout_complete", get_parent(), "load_lose_screen")
 	self.connect("evolution_complete", get_parent(), "load_win_screen")
 	
@@ -64,14 +68,17 @@ func _process(delta):
 	return	
 
 func _on_Feed_pressed():
+	emit_signal("ui_button_pressed")
 	emit_signal("feed_button_pressed")
 	return
 
 func _on_Kill_pressed():
+	emit_signal("ui_button_pressed")
 	emit_signal("kill_button_pressed")
 	return
 
 func _on_Pet_pressed():
+	emit_signal("ui_button_pressed")
 	emit_signal("pet_button_pressed")
 	return
 

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/petting.ogg-dad13a4c3da24e122bd577c04505cc69.oggstr"
+
+[deps]
+
+source_file="res://assets/music/petting.ogg"
+dest_files=[ "res://.import/petting.ogg-dad13a4c3da24e122bd577c04505cc69.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

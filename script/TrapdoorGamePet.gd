@@ -60,7 +60,7 @@ func _on_KillArea_body_entered(body):
 		add_child(blood)
 		
 		if body.victim == true:
-			call_deferred("emit_signal", "collided_with_victim", 0.05)
+			call_deferred("emit_signal", "collided_with_victim", 0.1)
 		else:
 			call_deferred("emit_signal", "collided_with_enemy")
 				

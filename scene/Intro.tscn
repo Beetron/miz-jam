@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://script/Intro.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scene/Pet.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/selection.png" type="Texture" id=4]
+[ext_resource path="res://assets/music/naming.ogg" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -138,6 +139,10 @@ texture = ExtResource( 4 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "SelectionBounce"
 anims/SelectionBounce = SubResource( 3 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
 [connection signal="input_event" from="Bear" to="." method="_on_Bear_input_event"]
 [connection signal="input_event" from="Crab" to="." method="_on_Crab_input_event"]
 [connection signal="input_event" from="Croc" to="." method="_on_Croc_input_event"]
