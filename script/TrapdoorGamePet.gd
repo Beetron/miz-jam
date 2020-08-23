@@ -55,9 +55,9 @@ func _on_KillArea_body_entered(body):
 		add_child(blood)
 		
 		if body.victim == true:
-			emit_signal("collided_with_victim", 0.05)
+			call_deferred("emit_signal", "collided_with_victim", 0.05)
 		else:
-			emit_signal("collided_with_enemy")
+			call_deferred("emit_signal", "collided_with_enemy")
 				
 		if hunted_list.empty():
 			if velocity.x > 0:
